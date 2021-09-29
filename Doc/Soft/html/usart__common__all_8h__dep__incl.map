@@ -1,7 +1,7 @@
-<map id="/home/jpabgrall/.platformio/packages/framework&#45;libopencm3/include/libopencm3/stm32/common/usart_common_all.h" name="/home/jpabgrall/.platformio/packages/framework&#45;libopencm3/include/libopencm3/stm32/common/usart_common_all.h">
-<area shape="rect" id="node1" title=" " alt="" coords="292,5,551,76"/>
-<area shape="rect" id="node2" href="$usart__common__f124_8h.html" title=" " alt="" coords="151,124,409,195"/>
-<area shape="rect" id="node5" href="$usart__common__fifos_8h.html" title=" " alt="" coords="433,124,692,195"/>
-<area shape="rect" id="node3" href="$usart_8h.html" title=" " alt="" coords="5,250,269,306"/>
-<area shape="rect" id="node4" href="$usart__common__f24_8h.html" title=" " alt="" coords="293,243,552,313"/>
+<map id="C:/Users/jp.abgrall.DOM&#45;M&#45;TECKS/.platformio/packages/framework&#45;libopencm3/include/libopencm3/stm32/common/usart_common_all.h" name="C:/Users/jp.abgrall.DOM&#45;M&#45;TECKS/.platformio/packages/framework&#45;libopencm3/include/libopencm3/stm32/common/usart_common_all.h">
+<area shape="rect" id="node1" title=" " alt="" coords="240,5,459,91"/>
+<area shape="rect" id="node2" href="$usart__common__f124_8h.html" title=" " alt="" coords="119,139,337,224"/>
+<area shape="rect" id="node5" href="$usart__common__fifos_8h.html" title=" " alt="" coords="361,139,580,224"/>
+<area shape="rect" id="node3" href="$usart_8h.html" title=" " alt="" coords="5,279,213,350"/>
+<area shape="rect" id="node4" href="$usart__common__f24_8h.html" title=" " alt="" coords="237,272,456,357"/>
 </map>
