@@ -1,0 +1,5 @@
+<map id="RTC Registers" name="RTC Registers">
+<area shape="rect" id="node1" href="$group__rtc__tr__values.html" title=" " alt="" coords="315,5,456,45"/>
+<area shape="rect" id="node2" title="Real Time Clock registers." alt="" coords="155,13,267,38"/>
+<area shape="rect" id="node3" href="$group__rtc__defines.html" title="Defined Constants and Types for the STM32F1xx Real Time Clock" alt="" coords="5,13,107,38"/>
+</map>

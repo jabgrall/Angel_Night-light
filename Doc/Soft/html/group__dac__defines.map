@@ -1,0 +1,11 @@
+<map id="DAC Defines" name="DAC Defines">
+<area shape="rect" id="node1" href="$group__dac__mamp1.html" title="values" alt="" coords="359,5,546,60"/>
+<area shape="rect" id="node2" href="$group__dac__mamp2.html" title="values" alt="" coords="359,84,546,139"/>
+<area shape="rect" id="node3" href="$group__STM32F1xx__defines.html" title="Defined Constants and Types for the STM32F1xx series." alt="" coords="5,220,157,245"/>
+<area shape="rect" id="node4" title="Defined Constants and Types for the STM32F1xx DAC" alt="" coords="205,220,309,245"/>
+<area shape="rect" id="node5" href="$group__dac__sr__values.html" title=" " alt="" coords="391,163,514,188"/>
+<area shape="rect" id="node6" href="$group__dac__wave2__en.html" title=" " alt="" coords="357,213,548,253"/>
+<area shape="rect" id="node7" href="$group__dac__wave1__en.html" title=" " alt="" coords="357,277,548,317"/>
+<area shape="rect" id="node8" href="$group__dac__trig1__sel.html" title=" " alt="" coords="369,341,537,381"/>
+<area shape="rect" id="node9" href="$group__dac__trig2__sel.html" title=" " alt="" coords="369,405,537,445"/>
+</map>

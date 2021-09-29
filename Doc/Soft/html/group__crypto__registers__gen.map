@@ -1,0 +1,4 @@
+<map id="Registers (Generic)" name="Registers (Generic)">
+<area shape="rect" id="node1" title="Register access to the CRYP controller. (All chips)" alt="" coords="173,5,320,31"/>
+<area shape="rect" id="node2" href="$group__crypto__defines.html" title=" " alt="" coords="5,5,125,31"/>
+</map>

@@ -1,0 +1,35 @@
+Source:;/media/m-tecks/Sauv_JP/Documents/Projet Perso/PCB/PCB-Ange/PCB-Ange/PCB-Ange.sch;;;;;
+Date:;lun. 06 janv. 2020 14:05:54 CET;;;;;
+Tool:;Eeschema 5.1.5-52549c5~84~ubuntu18.04.1;;;;;
+Generator:;/usr/share/kicad/plugins/bom_csv_grouped_by_value_with_fp.py;;;;;
+Component Count:;54;;;;;
+Ref;Qnty;Value;Cmp name;Footprint;Description;Vendor
+"C1; C2; C5; C6; C7; C8; C9; C13; C14; ";9;"100nF; 10V";C;Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder;Unpolarized capacitor;80-C0603C104K9R
+"C3; C10; C15; C16; ";4;"1µF; 10V";C;Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder;Unpolarized capacitor;963-JMK107BJ105MA-T
+"C4; C12; C17; C19; ";4;"10µF; 6.3V";C;Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder;Unpolarized capacitor;81-GRM188R60J106KE7D
+"C11; ";1;"4.7µF; 10V";C;Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder;Unpolarized capacitor;963-JMK107BJ475KA-T
+"C18; ";1;"100µF; 6.3V";C;Resistor_SMD:R_1210_3225Metric_Pad1.42x2.65mm_HandSolder;Unpolarized capacitor;963-JMK325ABJ107MM-P
+"C20; ";1;"100nF; 6.3V";C;Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder;Unpolarized capacitor;80-C0603C104K9R
+"D1; ";1;LED_RCGB;LED_RCGB;LED_THT:LED_D5.0mm-4_RGB;"RGB LED; red/cathode/green/blue";Amazon
+"J1; ";1;Alim;Conn_01x02;PCB-Ange:Keystone_SMD_5230_AAA;"Generic connector; single row; 01x02; script generated (kicad-library-utils/schlib/autogen/connector/)";2x 534-5230
+"J2; ";1;Conn_02x05_Odd_Even;Conn_02x05_Odd_Even;Connector_PinHeader_1.27mm:PinHeader_2x05_P1.27mm_Vertical_SMD;"Generic connector; double row; 02x05; odd/even pin numbering scheme (row 1 odd numbers; row 2 even numbers); script generated (kicad-library-utils/schlib/autogen/connector/)";200-FTSH10501FDV
+"J3; ";1;Conn_02x02_Odd_Even;Conn_02x02_Odd_Even;Connector_PinHeader_1.27mm:PinHeader_2x02_P1.27mm_Vertical_SMD;"Generic connector; double row; 02x02; odd/even pin numbering scheme (row 1 odd numbers; row 2 even numbers); script generated (kicad-library-utils/schlib/autogen/connector/)";200-FTSH10201FDV
+"L1; ";1;"4.7µH; Isat 2A";L;Inductor_SMD:L_Bourns-SRN4018;Inductor;652-SRN4018TA-4R7M
+"MK1; ";1;Microphone;Microphone;PCB-Ange:micro_4mm;Microphone;Amazon
+"Q1; Q2; Q3; ";3;Q_PMOS_GSD;Q_PMOS_GSD;Package_TO_SOT_SMD:SOT-723;"P-MOSFET transistor; gate/source/drain";755-RZM001P02T2L
+"R1; R2; R13; R14; ";4;"10K; 63mW";R;Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder;Resistor;754-RR0816P-103D
+"R3; R4; R9; R15; ";4;"1K; 63mW";R;Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder;Resistor;754-RR0816P-102D
+"R5; R11; R17; ";3;"4K7; 63mW";R;Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder;Resistor;279-CPF0603B4K7E1
+"R6; ";1;"2K55; 63mW";R;Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder;Resistor;279-CPF0603F2K55C1
+"R7; ";1;"75R; 63mW";R;Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder;Resistor;754-RR0816Q-750D
+"R8; ";1;"47K; 63mW";R;Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder;Resistor;754-RR0816P-473D
+"R10; ";1;"249R; 63mW";R;Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder;Resistor;279-CPF0603F249RC1
+"R12; ";1;"15R; 63mW";R;Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder;Resistor;754-RR0816Q-150D
+"R16; ";1;"78R7; 63mW";R;Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder;Resistor;279-CPF0603B78R7E1
+"R18; ";1;"5R; 63mW";R;Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder;Resistor;279-CPF0603B5R1E1
+"SW1; SW2; ";2;SW_Push;SW_Push;Button_Switch_SMD:SW_SPST_B3U-1000P-B;"Push button switch; generic; two pins";653-B3U-1000P-B
+"SW3; ";1;SW_DIP_x01;SW_DIP_x01;Button_Switch_SMD:SW_DIP_SPSTx01_Slide_6.7x4.1mm_W8.61mm_P2.54mm_LowProfile;"1x DIP Switch; Single Pole Single Throw (SPST) switch; small symbol";642-DM01
+"U1; ";1;STM32F103C6Tx;STM32F103C6Tx;Package_QFP:LQFP-48_7x7mm_P0.5mm;"ARM Cortex-M3 MCU; 32KB flash; 10KB RAM; 72MHz; 2-3.6V; 37 GPIO; LQFP-48";511-STM32F103C6T6A
+"U2; ";1;MCP1642B;MCP1642B;Package_SO:MSOP-8_3x3mm_P0.65mm;;579-MCP1642BT-30I/MS
+"U3; ";1;ADXL345;ADXL345;Package_LGA:LGA-14_3x5mm_P0.8mm_LayoutBorder1x6y;;Amazon
+"U4; ";1;INA317;INA317;Package_SO:VSSOP-8_3.0x3.0mm_P0.65mm;;595-INA317IDGKR

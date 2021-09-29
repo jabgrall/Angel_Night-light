@@ -1,0 +1,10 @@
+<map id="LPTIM_CFGR Configuration Register" name="LPTIM_CFGR Configuration Register">
+<area shape="rect" id="node1" title=" " alt="" coords="180,165,376,205"/>
+<area shape="rect" id="node2" href="$group__lptim__cfgr__ckflt.html" title=" " alt="" coords="429,5,663,45"/>
+<area shape="rect" id="node4" href="$group__LPTIM__CFGR__TRIGEN.html" title=" " alt="" coords="443,69,649,109"/>
+<area shape="rect" id="node5" href="$group__lptim__cfgr__ckpol.html" title=" " alt="" coords="451,133,641,173"/>
+<area shape="rect" id="node6" href="$group__lptim__cfgr__presc.html" title=" " alt="" coords="451,197,641,237"/>
+<area shape="rect" id="node7" href="$group__lptim__cfgr__trigsel.html" title=" " alt="" coords="465,261,627,301"/>
+<area shape="rect" id="node8" href="$group__lptim__cfgr__trgflt.html" title=" " alt="" coords="424,325,668,365"/>
+<area shape="rect" id="node3" href="$group__lptimer__defines.html" title=" " alt="" coords="5,173,132,198"/>
+</map>

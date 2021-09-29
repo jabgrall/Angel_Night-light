@@ -1,0 +1,7 @@
+<map id="FLASH Wait States" name="FLASH Wait States">
+<area shape="rect" id="node1" href="$group__flash__registers.html" title=" " alt="" coords="5,5,128,31"/>
+<area shape="rect" id="node2" title=" " alt="" coords="176,31,320,56"/>
+<area shape="rect" id="node3" href="$group__flash__cr__program__width.html" title=" " alt="" coords="368,5,557,31"/>
+<area shape="rect" id="node4" href="$group__flash__acr__values.html" title="Access Control register values." alt="" coords="389,55,536,80"/>
+<area shape="rect" id="node5" href="$group__flash__defines.html" title="Defined Constants and Types for the STM32F1xx FLASH Memory." alt="" coords="7,55,126,80"/>
+</map>

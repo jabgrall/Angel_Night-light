@@ -1,0 +1,21 @@
+<map id="USART Defines" name="USART Defines">
+<area shape="rect" id="node1" href="$group__usart__cr1__mode.html" title=" " alt="" coords="375,5,587,31"/>
+<area shape="rect" id="node2" href="$group__usart__cr2__stopbits.html" title=" " alt="" coords="387,55,574,80"/>
+<area shape="rect" id="node3" href="$group__STM32F1xx__defines.html" title="Defined Constants and Types for the STM32F1xx series." alt="" coords="5,455,157,480"/>
+<area shape="rect" id="node19" title="Defined Constants and Types for the STM32F1xx USART" alt="" coords="205,455,327,480"/>
+<area shape="rect" id="node4" href="$group__usart__cr3__flowcontrol.html" title=" " alt="" coords="396,105,565,145"/>
+<area shape="rect" id="node5" href="$group__usart__sr__flags.html" title=" " alt="" coords="397,169,564,209"/>
+<area shape="rect" id="node6" href="$group__usart__registers.html" title=" " alt="" coords="415,233,547,259"/>
+<area shape="rect" id="node7" href="$group__usart__reg__base.html" title="Holds all the U(S)ART peripherals supported." alt="" coords="403,283,559,323"/>
+<area shape="rect" id="node8" href="$group__usart__rtor__values.html" title=" " alt="" coords="401,348,560,373"/>
+<area shape="rect" id="node9" href="$group__usart__rqr__values.html" title=" " alt="" coords="405,397,556,423"/>
+<area shape="rect" id="node10" href="$group__usart__convenience__flags.html" title=" " alt="" coords="399,447,562,487"/>
+<area shape="rect" id="node11" href="$group__usart__isr__values.html" title=" " alt="" coords="409,512,552,537"/>
+<area shape="rect" id="node12" href="$group__usart__dr__values.html" title=" " alt="" coords="390,561,571,587"/>
+<area shape="rect" id="node13" href="$group__usart__icr__values.html" title=" " alt="" coords="409,611,553,636"/>
+<area shape="rect" id="node14" href="$group__usart__cr2__values.html" title=" " alt="" coords="407,660,555,685"/>
+<area shape="rect" id="node15" href="$group__usart__cr1__values.html" title=" " alt="" coords="407,709,555,735"/>
+<area shape="rect" id="node16" href="$group__usart__cr1__parity.html" title=" " alt="" coords="394,759,567,784"/>
+<area shape="rect" id="node17" href="$group__usart__gtpr__values.html" title=" " alt="" coords="402,808,559,833"/>
+<area shape="rect" id="node18" href="$group__usart__cr3__values.html" title=" " alt="" coords="407,857,555,883"/>
+</map>
