@@ -15,7 +15,7 @@
 				</extensions>
 			</storageModule>
 			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
-				<configuration artifactName="Angel_Night-light" buildProperties="" description="" id="0.910961921" name="Default" parent="org.eclipse.cdt.build.core.prefbase.cfg">
+				<configuration artifactName="GitHub" buildProperties="" description="" id="0.910961921" name="Default" parent="org.eclipse.cdt.build.core.prefbase.cfg">
 					<folderInfo id="0.910961921." name="/" resourcePath="">
 						<toolChain id="org.eclipse.cdt.build.core.prefbase.toolchain.952979152" name="No ToolChain" resourceTypeBasedDiscovery="false" superClass="org.eclipse.cdt.build.core.prefbase.toolchain">
 							<targetPlatform binaryParser="org.eclipse.cdt.core.ELF" id="org.eclipse.cdt.build.core.prefbase.toolchain.952979152.52310970" name=""/>
@@ -23,13 +23,13 @@
 							<tool id="org.eclipse.cdt.build.core.settings.holder.libs.1409095472" name="holder for library settings" superClass="org.eclipse.cdt.build.core.settings.holder.libs"/>
 							<tool id="org.eclipse.cdt.build.core.settings.holder.1624502120" name="Assembly" superClass="org.eclipse.cdt.build.core.settings.holder">
 								<option id="org.eclipse.cdt.build.core.settings.holder.incpaths.239157887" name="Include Paths" superClass="org.eclipse.cdt.build.core.settings.holder.incpaths" valueType="includePath">
-									<listOptionValue builtIn="false" value="${HOME}/Desktop/GitHub/Angel_Night-light/include"/>
-									<listOptionValue builtIn="false" value="${HOME}/Desktop/GitHub/Angel_Night-light/src"/>
-									<listOptionValue builtIn="false" value="${HOME}/Desktop/GitHub/Angel_Night-light/lib/SysTick"/>
-									<listOptionValue builtIn="false" value="${HOME}/Desktop/GitHub/Angel_Night-light/lib/ADXL345"/>
-									<listOptionValue builtIn="false" value="${HOME}/Desktop/GitHub/Angel_Night-light/lib/Light"/>
-									<listOptionValue builtIn="false" value="${HOME}/.platformio/packages/framework-libopencm3"/>
-									<listOptionValue builtIn="false" value="${HOME}/.platformio/packages/framework-libopencm3/include"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Desktop/GitHub/include"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Desktop/GitHub/src"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Desktop/GitHub/lib/SysTick"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Desktop/GitHub/lib/Light"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Desktop/GitHub/lib/ADXL345"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-libopencm3"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-libopencm3/include"/>
 								</option>
 								<option id="org.eclipse.cdt.build.core.settings.holder.symbols.922107295" name="Symbols" superClass="org.eclipse.cdt.build.core.settings.holder.symbols" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="PLATFORMIO=50200"/>
@@ -42,13 +42,13 @@
 							</tool>
 							<tool id="org.eclipse.cdt.build.core.settings.holder.54121539" name="GNU C++" superClass="org.eclipse.cdt.build.core.settings.holder">
 								<option id="org.eclipse.cdt.build.core.settings.holder.incpaths.1096940598" name="Include Paths" superClass="org.eclipse.cdt.build.core.settings.holder.incpaths" valueType="includePath">
-									<listOptionValue builtIn="false" value="${HOME}/Desktop/GitHub/Angel_Night-light/include"/>
-									<listOptionValue builtIn="false" value="${HOME}/Desktop/GitHub/Angel_Night-light/src"/>
-									<listOptionValue builtIn="false" value="${HOME}/Desktop/GitHub/Angel_Night-light/lib/SysTick"/>
-									<listOptionValue builtIn="false" value="${HOME}/Desktop/GitHub/Angel_Night-light/lib/ADXL345"/>
-									<listOptionValue builtIn="false" value="${HOME}/Desktop/GitHub/Angel_Night-light/lib/Light"/>
-									<listOptionValue builtIn="false" value="${HOME}/.platformio/packages/framework-libopencm3"/>
-									<listOptionValue builtIn="false" value="${HOME}/.platformio/packages/framework-libopencm3/include"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Desktop/GitHub/include"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Desktop/GitHub/src"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Desktop/GitHub/lib/SysTick"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Desktop/GitHub/lib/Light"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Desktop/GitHub/lib/ADXL345"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-libopencm3"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-libopencm3/include"/>
 								</option>
 								<option id="org.eclipse.cdt.build.core.settings.holder.symbols.1198905600" name="Symbols" superClass="org.eclipse.cdt.build.core.settings.holder.symbols" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="PLATFORMIO=50200"/>
@@ -61,13 +61,13 @@
 							</tool>
 							<tool id="org.eclipse.cdt.build.core.settings.holder.1310559623" name="GNU C" superClass="org.eclipse.cdt.build.core.settings.holder">
 								<option id="org.eclipse.cdt.build.core.settings.holder.incpaths.41298875" name="Include Paths" superClass="org.eclipse.cdt.build.core.settings.holder.incpaths" valueType="includePath">
-									<listOptionValue builtIn="false" value="${HOME}/Desktop/GitHub/Angel_Night-light/include"/>
-									<listOptionValue builtIn="false" value="${HOME}/Desktop/GitHub/Angel_Night-light/src"/>
-									<listOptionValue builtIn="false" value="${HOME}/Desktop/GitHub/Angel_Night-light/lib/SysTick"/>
-									<listOptionValue builtIn="false" value="${HOME}/Desktop/GitHub/Angel_Night-light/lib/ADXL345"/>
-									<listOptionValue builtIn="false" value="${HOME}/Desktop/GitHub/Angel_Night-light/lib/Light"/>
-									<listOptionValue builtIn="false" value="${HOME}/.platformio/packages/framework-libopencm3"/>
-									<listOptionValue builtIn="false" value="${HOME}/.platformio/packages/framework-libopencm3/include"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Desktop/GitHub/include"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Desktop/GitHub/src"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Desktop/GitHub/lib/SysTick"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Desktop/GitHub/lib/Light"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Desktop/GitHub/lib/ADXL345"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-libopencm3"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-libopencm3/include"/>
 								</option>
 								<option id="org.eclipse.cdt.build.core.settings.holder.symbols.884639970" name="Symbols" superClass="org.eclipse.cdt.build.core.settings.holder.symbols" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="PLATFORMIO=50200"/>
@@ -106,13 +106,13 @@
 							<tool id="org.eclipse.cdt.build.core.settings.holder.libs.1855678035" name="holder for library settings" superClass="org.eclipse.cdt.build.core.settings.holder.libs"/>
 							<tool id="org.eclipse.cdt.build.core.settings.holder.30528994" name="Assembly" superClass="org.eclipse.cdt.build.core.settings.holder">
 								<option id="org.eclipse.cdt.build.core.settings.holder.incpaths.794801023" name="Include Paths" superClass="org.eclipse.cdt.build.core.settings.holder.incpaths" valueType="includePath">
-									<listOptionValue builtIn="false" value="${HOME}/Desktop/GitHub/Angel_Night-light/include"/>
-									<listOptionValue builtIn="false" value="${HOME}/Desktop/GitHub/Angel_Night-light/src"/>
-									<listOptionValue builtIn="false" value="${HOME}/Desktop/GitHub/Angel_Night-light/lib/SysTick"/>
-									<listOptionValue builtIn="false" value="${HOME}/Desktop/GitHub/Angel_Night-light/lib/ADXL345"/>
-									<listOptionValue builtIn="false" value="${HOME}/Desktop/GitHub/Angel_Night-light/lib/Light"/>
-									<listOptionValue builtIn="false" value="${HOME}/.platformio/packages/framework-libopencm3"/>
-									<listOptionValue builtIn="false" value="${HOME}/.platformio/packages/framework-libopencm3/include"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Desktop/GitHub/include"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Desktop/GitHub/src"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Desktop/GitHub/lib/SysTick"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Desktop/GitHub/lib/Light"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Desktop/GitHub/lib/ADXL345"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-libopencm3"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-libopencm3/include"/>
 								</option>
 								<option id="org.eclipse.cdt.build.core.settings.holder.symbols.1743427839" name="Symbols" superClass="org.eclipse.cdt.build.core.settings.holder.symbols" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="PLATFORMIO=50200"/>
@@ -125,13 +125,13 @@
 							</tool>
 							<tool id="org.eclipse.cdt.build.core.settings.holder.1146422798" name="GNU C++" superClass="org.eclipse.cdt.build.core.settings.holder">
 								<option id="org.eclipse.cdt.build.core.settings.holder.incpaths.650084869" name="Include Paths" superClass="org.eclipse.cdt.build.core.settings.holder.incpaths" useByScannerDiscovery="false" valueType="includePath">
-									<listOptionValue builtIn="false" value="${HOME}/Desktop/GitHub/Angel_Night-light/include"/>
-									<listOptionValue builtIn="false" value="${HOME}/Desktop/GitHub/Angel_Night-light/src"/>
-									<listOptionValue builtIn="false" value="${HOME}/Desktop/GitHub/Angel_Night-light/lib/SysTick"/>
-									<listOptionValue builtIn="false" value="${HOME}/Desktop/GitHub/Angel_Night-light/lib/ADXL345"/>
-									<listOptionValue builtIn="false" value="${HOME}/Desktop/GitHub/Angel_Night-light/lib/Light"/>
-									<listOptionValue builtIn="false" value="${HOME}/.platformio/packages/framework-libopencm3"/>
-									<listOptionValue builtIn="false" value="${HOME}/.platformio/packages/framework-libopencm3/include"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Desktop/GitHub/include"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Desktop/GitHub/src"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Desktop/GitHub/lib/SysTick"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Desktop/GitHub/lib/Light"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Desktop/GitHub/lib/ADXL345"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-libopencm3"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-libopencm3/include"/>
 								</option>
 								<option id="org.eclipse.cdt.build.core.settings.holder.symbols.2055633423" name="Symbols" superClass="org.eclipse.cdt.build.core.settings.holder.symbols" useByScannerDiscovery="false" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="PLATFORMIO=50200"/>
@@ -144,13 +144,13 @@
 							</tool>
 							<tool id="org.eclipse.cdt.build.core.settings.holder.1637357529" name="GNU C" superClass="org.eclipse.cdt.build.core.settings.holder">
 								<option id="org.eclipse.cdt.build.core.settings.holder.incpaths.1246337321" name="Include Paths" superClass="org.eclipse.cdt.build.core.settings.holder.incpaths" useByScannerDiscovery="false" valueType="includePath">
-									<listOptionValue builtIn="false" value="${HOME}/Desktop/GitHub/Angel_Night-light/include"/>
-									<listOptionValue builtIn="false" value="${HOME}/Desktop/GitHub/Angel_Night-light/src"/>
-									<listOptionValue builtIn="false" value="${HOME}/Desktop/GitHub/Angel_Night-light/lib/SysTick"/>
-									<listOptionValue builtIn="false" value="${HOME}/Desktop/GitHub/Angel_Night-light/lib/ADXL345"/>
-									<listOptionValue builtIn="false" value="${HOME}/Desktop/GitHub/Angel_Night-light/lib/Light"/>
-									<listOptionValue builtIn="false" value="${HOME}/.platformio/packages/framework-libopencm3"/>
-									<listOptionValue builtIn="false" value="${HOME}/.platformio/packages/framework-libopencm3/include"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Desktop/GitHub/include"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Desktop/GitHub/src"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Desktop/GitHub/lib/SysTick"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Desktop/GitHub/lib/Light"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/Desktop/GitHub/lib/ADXL345"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-libopencm3"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-libopencm3/include"/>
 								</option>
 								<option id="org.eclipse.cdt.build.core.settings.holder.symbols.2122043341" name="Symbols" superClass="org.eclipse.cdt.build.core.settings.holder.symbols" useByScannerDiscovery="false" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="PLATFORMIO=50200"/>
@@ -169,7 +169,7 @@
 		</cconfiguration>
 	</storageModule>
 	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
-		<project id="Angel_Night-light.null.189551033" name="Angel_Night-light"/>
+		<project id="GitHub.null.189551033" name="GitHub"/>
 	</storageModule>
 	<storageModule moduleId="scannerConfiguration">
 		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>

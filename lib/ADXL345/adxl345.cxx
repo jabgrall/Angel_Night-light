@@ -559,7 +559,7 @@ void Adxl345::com(uint8_t addr, bool setWrite, uint8_t nbData)
 	uint8_t firstByte = 0;
 	volatile uint8_t dataFirst;
 
-	firstByte = ((setWrite ? 1 : 0) << 7) + ((nbData > 1 ? 1 : 0) << 6) + (0x3F & addr);
+	firstByte = ((setWrite ? 0 : 1) << 7) + ((nbData > 1 ? 1 : 0) << 6) + (0x3F & addr);
 
 	//Connect to client
 	gpio_clear(GPIOA, GPIO3);
@@ -614,11 +614,9 @@ Adxl345::data Adxl345::getData(void)
 	com(0x32, false, 6);
 
 	//Prepare data
-	valOut.x = (int16_t)((bufferOut[1] << 8) + bufferOut[0]);
-	valOut.y = (int16_t)((bufferOut[3] << 8) + bufferOut[2]);
-	valOut.z = (int16_t)((bufferOut[5] << 8) + bufferOut[4]);
-
-	valOut.x = comByte(0x00, false);
+	valOut.x = (int16_t)((bufferIn[1] << 8) + bufferIn[0]);
+	valOut.y = (int16_t)((bufferIn[3] << 8) + bufferIn[2]);
+	valOut.z = (int16_t)((bufferIn[5] << 8) + bufferIn[4]);
 
 	return valOut;
 }

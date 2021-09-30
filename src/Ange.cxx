@@ -169,6 +169,8 @@ int main(void)
 
 	ledCmd.begin();
 
+	//Adxl345: typical startup time 1.4ms
+	delay(20);
 	axcel.begin();
 
 	while(true)
