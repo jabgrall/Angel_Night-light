@@ -19,7 +19,7 @@
 <stringAttribute key="org.eclipse.cdt.launch.DEBUGGER_START_MODE" value="run"/>
 <booleanAttribute key="org.eclipse.cdt.launch.DEBUGGER_STOP_AT_MAIN" value="false"/>
 <stringAttribute key="org.eclipse.cdt.launch.DEBUGGER_STOP_AT_MAIN_SYMBOL" value=""/>
-<stringAttribute key="org.eclipse.cdt.launch.PROGRAM_NAME" value="/192.168.1.202/M-TecksEAC/Personnel/Abgrall/Perso/Dvpmt/Angel_Night-light/.pio/build/genericSTM32F103C6/firmware.elf"/>
+<stringAttribute key="org.eclipse.cdt.launch.PROGRAM_NAME" value="/home/jpabgrall/Desktop/GitHub/Angel_Night-light/.pio/build/uno/firmware.elf"/>
 <stringAttribute key="org.eclipse.cdt.launch.PROJECT_ATTR" value="Angel_Night-light"/>
 <booleanAttribute key="org.eclipse.cdt.launch.PROJECT_BUILD_CONFIG_AUTO_ATTR" value="false"/>
 <stringAttribute key="org.eclipse.cdt.launch.PROJECT_BUILD_CONFIG_ID_ATTR" value="0.910961921.1363900502"/>

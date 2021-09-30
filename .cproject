@@ -23,160 +23,58 @@
 							<tool id="org.eclipse.cdt.build.core.settings.holder.libs.1409095472" name="holder for library settings" superClass="org.eclipse.cdt.build.core.settings.holder.libs"/>
 							<tool id="org.eclipse.cdt.build.core.settings.holder.1624502120" name="Assembly" superClass="org.eclipse.cdt.build.core.settings.holder">
 								<option id="org.eclipse.cdt.build.core.settings.holder.incpaths.239157887" name="Include Paths" superClass="org.eclipse.cdt.build.core.settings.holder.incpaths" valueType="includePath">
-									<listOptionValue builtIn="false" value="/192.168.1.202/M-TecksEAC/Personnel/Abgrall/Perso/Dvpmt/Angel_Night-light/include"/>
-									<listOptionValue builtIn="false" value="/192.168.1.202/M-TecksEAC/Personnel/Abgrall/Perso/Dvpmt/Angel_Night-light/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/cores/arduino/avr"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/cores/arduino/stm32"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/cores/arduino/stm32/LL"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/cores/arduino/stm32/usb"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/cores/arduino/stm32/OpenAMP"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/cores/arduino/stm32/usb/hid"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/cores/arduino/stm32/usb/cdc"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/Drivers/STM32F1xx_HAL_Driver/Inc"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/Drivers/STM32F1xx_HAL_Driver/Src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/STM32F1xx"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/Middlewares/ST/STM32_USB_Device_Library/Core/Inc"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/Middlewares/ST/STM32_USB_Device_Library/Core/Src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/Middlewares/OpenAMP"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/Middlewares/OpenAMP/open-amp/lib/include"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/Middlewares/OpenAMP/libmetal/lib/include"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/Middlewares/OpenAMP/virtual_driver"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-cmsis/CMSIS/Core/Include"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/Drivers/CMSIS/Device/ST/STM32F1xx/Include"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/Drivers/CMSIS/Device/ST/STM32F1xx/Source/Templates/gcc"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-cmsis/CMSIS/DSP/Include"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-cmsis/CMSIS/DSP/PrivateInclude"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/cores/arduino"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/variants/STM32F1xx/F103C4T_F103C6(T-U)"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/libraries/CMSIS_DSP/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/libraries/EEPROM/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/libraries/IWatchdog/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/libraries/Keyboard/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/libraries/Mouse/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/libraries/SPI/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/libraries/Servo/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/libraries/SoftwareSerial/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/libraries/SrcWrapper/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/libraries/Wire/src"/>
+									<listOptionValue builtIn="false" value="${HOME}/Desktop/GitHub/Angel_Night-light/include"/>
+									<listOptionValue builtIn="false" value="${HOME}/Desktop/GitHub/Angel_Night-light/src"/>
+									<listOptionValue builtIn="false" value="${HOME}/Desktop/GitHub/Angel_Night-light/lib/SysTick"/>
+									<listOptionValue builtIn="false" value="${HOME}/Desktop/GitHub/Angel_Night-light/lib/ADXL345"/>
+									<listOptionValue builtIn="false" value="${HOME}/Desktop/GitHub/Angel_Night-light/lib/Light"/>
+									<listOptionValue builtIn="false" value="${HOME}/.platformio/packages/framework-libopencm3"/>
+									<listOptionValue builtIn="false" value="${HOME}/.platformio/packages/framework-libopencm3/include"/>
 								</option>
 								<option id="org.eclipse.cdt.build.core.settings.holder.symbols.922107295" name="Symbols" superClass="org.eclipse.cdt.build.core.settings.holder.symbols" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="PLATFORMIO=50200"/>
 									<listOptionValue builtIn="false" value="STM32F103x6"/>
 									<listOptionValue builtIn="false" value="STM32F1"/>
-									<listOptionValue builtIn="false" value="STM32F1xx"/>
-									<listOptionValue builtIn="false" value="ARDUINO=10808"/>
-									<listOptionValue builtIn="false" value="ARDUINO_ARCH_STM32"/>
-									<listOptionValue builtIn="false" value="ARDUINO_GENERIC_F103C6TX"/>
-									<listOptionValue builtIn="false" value="BOARD_NAME=&quot;GENERIC_F103C6TX&quot;"/>
-									<listOptionValue builtIn="false" value="HAL_UART_MODULE_ENABLED"/>
-									<listOptionValue builtIn="false" value="USE_FULL_LL_DRIVER"/>
-									<listOptionValue builtIn="false" value="VARIANT_H=&quot;variant_generic.h&quot;"/>
+									<listOptionValue builtIn="false" value="F_CPU=72000000L"/>
+									<listOptionValue builtIn="false" value="__PLATFORMIO_BUILD_DEBUG__"/>
 								</option>
 								<inputType id="org.eclipse.cdt.build.core.settings.holder.inType.149990277" languageId="org.eclipse.cdt.core.assembly" languageName="Assembly" sourceContentType="org.eclipse.cdt.core.asmSource" superClass="org.eclipse.cdt.build.core.settings.holder.inType"/>
 							</tool>
 							<tool id="org.eclipse.cdt.build.core.settings.holder.54121539" name="GNU C++" superClass="org.eclipse.cdt.build.core.settings.holder">
 								<option id="org.eclipse.cdt.build.core.settings.holder.incpaths.1096940598" name="Include Paths" superClass="org.eclipse.cdt.build.core.settings.holder.incpaths" valueType="includePath">
-									<listOptionValue builtIn="false" value="/192.168.1.202/M-TecksEAC/Personnel/Abgrall/Perso/Dvpmt/Angel_Night-light/include"/>
-									<listOptionValue builtIn="false" value="/192.168.1.202/M-TecksEAC/Personnel/Abgrall/Perso/Dvpmt/Angel_Night-light/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/cores/arduino/avr"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/cores/arduino/stm32"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/cores/arduino/stm32/LL"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/cores/arduino/stm32/usb"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/cores/arduino/stm32/OpenAMP"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/cores/arduino/stm32/usb/hid"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/cores/arduino/stm32/usb/cdc"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/Drivers/STM32F1xx_HAL_Driver/Inc"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/Drivers/STM32F1xx_HAL_Driver/Src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/STM32F1xx"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/Middlewares/ST/STM32_USB_Device_Library/Core/Inc"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/Middlewares/ST/STM32_USB_Device_Library/Core/Src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/Middlewares/OpenAMP"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/Middlewares/OpenAMP/open-amp/lib/include"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/Middlewares/OpenAMP/libmetal/lib/include"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/Middlewares/OpenAMP/virtual_driver"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-cmsis/CMSIS/Core/Include"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/Drivers/CMSIS/Device/ST/STM32F1xx/Include"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/Drivers/CMSIS/Device/ST/STM32F1xx/Source/Templates/gcc"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-cmsis/CMSIS/DSP/Include"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-cmsis/CMSIS/DSP/PrivateInclude"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/cores/arduino"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/variants/STM32F1xx/F103C4T_F103C6(T-U)"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/libraries/CMSIS_DSP/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/libraries/EEPROM/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/libraries/IWatchdog/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/libraries/Keyboard/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/libraries/Mouse/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/libraries/SPI/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/libraries/Servo/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/libraries/SoftwareSerial/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/libraries/SrcWrapper/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/libraries/Wire/src"/>
+									<listOptionValue builtIn="false" value="${HOME}/Desktop/GitHub/Angel_Night-light/include"/>
+									<listOptionValue builtIn="false" value="${HOME}/Desktop/GitHub/Angel_Night-light/src"/>
+									<listOptionValue builtIn="false" value="${HOME}/Desktop/GitHub/Angel_Night-light/lib/SysTick"/>
+									<listOptionValue builtIn="false" value="${HOME}/Desktop/GitHub/Angel_Night-light/lib/ADXL345"/>
+									<listOptionValue builtIn="false" value="${HOME}/Desktop/GitHub/Angel_Night-light/lib/Light"/>
+									<listOptionValue builtIn="false" value="${HOME}/.platformio/packages/framework-libopencm3"/>
+									<listOptionValue builtIn="false" value="${HOME}/.platformio/packages/framework-libopencm3/include"/>
 								</option>
 								<option id="org.eclipse.cdt.build.core.settings.holder.symbols.1198905600" name="Symbols" superClass="org.eclipse.cdt.build.core.settings.holder.symbols" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="PLATFORMIO=50200"/>
 									<listOptionValue builtIn="false" value="STM32F103x6"/>
 									<listOptionValue builtIn="false" value="STM32F1"/>
-									<listOptionValue builtIn="false" value="STM32F1xx"/>
-									<listOptionValue builtIn="false" value="ARDUINO=10808"/>
-									<listOptionValue builtIn="false" value="ARDUINO_ARCH_STM32"/>
-									<listOptionValue builtIn="false" value="ARDUINO_GENERIC_F103C6TX"/>
-									<listOptionValue builtIn="false" value="BOARD_NAME=&quot;GENERIC_F103C6TX&quot;"/>
-									<listOptionValue builtIn="false" value="HAL_UART_MODULE_ENABLED"/>
-									<listOptionValue builtIn="false" value="USE_FULL_LL_DRIVER"/>
-									<listOptionValue builtIn="false" value="VARIANT_H=&quot;variant_generic.h&quot;"/>
+									<listOptionValue builtIn="false" value="F_CPU=72000000L"/>
+									<listOptionValue builtIn="false" value="__PLATFORMIO_BUILD_DEBUG__"/>
 								</option>
 								<inputType id="org.eclipse.cdt.build.core.settings.holder.inType.762536863" languageId="org.eclipse.cdt.core.g++" languageName="GNU C++" sourceContentType="org.eclipse.cdt.core.cxxSource,org.eclipse.cdt.core.cxxHeader" superClass="org.eclipse.cdt.build.core.settings.holder.inType"/>
 							</tool>
 							<tool id="org.eclipse.cdt.build.core.settings.holder.1310559623" name="GNU C" superClass="org.eclipse.cdt.build.core.settings.holder">
 								<option id="org.eclipse.cdt.build.core.settings.holder.incpaths.41298875" name="Include Paths" superClass="org.eclipse.cdt.build.core.settings.holder.incpaths" valueType="includePath">
-									<listOptionValue builtIn="false" value="/192.168.1.202/M-TecksEAC/Personnel/Abgrall/Perso/Dvpmt/Angel_Night-light/include"/>
-									<listOptionValue builtIn="false" value="/192.168.1.202/M-TecksEAC/Personnel/Abgrall/Perso/Dvpmt/Angel_Night-light/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/cores/arduino/avr"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/cores/arduino/stm32"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/cores/arduino/stm32/LL"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/cores/arduino/stm32/usb"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/cores/arduino/stm32/OpenAMP"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/cores/arduino/stm32/usb/hid"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/cores/arduino/stm32/usb/cdc"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/Drivers/STM32F1xx_HAL_Driver/Inc"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/Drivers/STM32F1xx_HAL_Driver/Src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/STM32F1xx"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/Middlewares/ST/STM32_USB_Device_Library/Core/Inc"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/Middlewares/ST/STM32_USB_Device_Library/Core/Src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/Middlewares/OpenAMP"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/Middlewares/OpenAMP/open-amp/lib/include"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/Middlewares/OpenAMP/libmetal/lib/include"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/Middlewares/OpenAMP/virtual_driver"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-cmsis/CMSIS/Core/Include"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/Drivers/CMSIS/Device/ST/STM32F1xx/Include"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/Drivers/CMSIS/Device/ST/STM32F1xx/Source/Templates/gcc"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-cmsis/CMSIS/DSP/Include"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-cmsis/CMSIS/DSP/PrivateInclude"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/cores/arduino"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/variants/STM32F1xx/F103C4T_F103C6(T-U)"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/libraries/CMSIS_DSP/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/libraries/EEPROM/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/libraries/IWatchdog/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/libraries/Keyboard/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/libraries/Mouse/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/libraries/SPI/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/libraries/Servo/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/libraries/SoftwareSerial/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/libraries/SrcWrapper/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/libraries/Wire/src"/>
+									<listOptionValue builtIn="false" value="${HOME}/Desktop/GitHub/Angel_Night-light/include"/>
+									<listOptionValue builtIn="false" value="${HOME}/Desktop/GitHub/Angel_Night-light/src"/>
+									<listOptionValue builtIn="false" value="${HOME}/Desktop/GitHub/Angel_Night-light/lib/SysTick"/>
+									<listOptionValue builtIn="false" value="${HOME}/Desktop/GitHub/Angel_Night-light/lib/ADXL345"/>
+									<listOptionValue builtIn="false" value="${HOME}/Desktop/GitHub/Angel_Night-light/lib/Light"/>
+									<listOptionValue builtIn="false" value="${HOME}/.platformio/packages/framework-libopencm3"/>
+									<listOptionValue builtIn="false" value="${HOME}/.platformio/packages/framework-libopencm3/include"/>
 								</option>
 								<option id="org.eclipse.cdt.build.core.settings.holder.symbols.884639970" name="Symbols" superClass="org.eclipse.cdt.build.core.settings.holder.symbols" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="PLATFORMIO=50200"/>
 									<listOptionValue builtIn="false" value="STM32F103x6"/>
 									<listOptionValue builtIn="false" value="STM32F1"/>
-									<listOptionValue builtIn="false" value="STM32F1xx"/>
-									<listOptionValue builtIn="false" value="ARDUINO=10808"/>
-									<listOptionValue builtIn="false" value="ARDUINO_ARCH_STM32"/>
-									<listOptionValue builtIn="false" value="ARDUINO_GENERIC_F103C6TX"/>
-									<listOptionValue builtIn="false" value="BOARD_NAME=&quot;GENERIC_F103C6TX&quot;"/>
-									<listOptionValue builtIn="false" value="HAL_UART_MODULE_ENABLED"/>
-									<listOptionValue builtIn="false" value="USE_FULL_LL_DRIVER"/>
-									<listOptionValue builtIn="false" value="VARIANT_H=&quot;variant_generic.h&quot;"/>
+									<listOptionValue builtIn="false" value="F_CPU=72000000L"/>
+									<listOptionValue builtIn="false" value="__PLATFORMIO_BUILD_DEBUG__"/>
 								</option>
 								<inputType id="org.eclipse.cdt.build.core.settings.holder.inType.549319812" languageId="org.eclipse.cdt.core.gcc" languageName="GNU C" sourceContentType="org.eclipse.cdt.core.cSource,org.eclipse.cdt.core.cHeader" superClass="org.eclipse.cdt.build.core.settings.holder.inType"/>
 							</tool>
@@ -208,160 +106,58 @@
 							<tool id="org.eclipse.cdt.build.core.settings.holder.libs.1855678035" name="holder for library settings" superClass="org.eclipse.cdt.build.core.settings.holder.libs"/>
 							<tool id="org.eclipse.cdt.build.core.settings.holder.30528994" name="Assembly" superClass="org.eclipse.cdt.build.core.settings.holder">
 								<option id="org.eclipse.cdt.build.core.settings.holder.incpaths.794801023" name="Include Paths" superClass="org.eclipse.cdt.build.core.settings.holder.incpaths" valueType="includePath">
-									<listOptionValue builtIn="false" value="/192.168.1.202/M-TecksEAC/Personnel/Abgrall/Perso/Dvpmt/Angel_Night-light/include"/>
-									<listOptionValue builtIn="false" value="/192.168.1.202/M-TecksEAC/Personnel/Abgrall/Perso/Dvpmt/Angel_Night-light/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/cores/arduino/avr"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/cores/arduino/stm32"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/cores/arduino/stm32/LL"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/cores/arduino/stm32/usb"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/cores/arduino/stm32/OpenAMP"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/cores/arduino/stm32/usb/hid"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/cores/arduino/stm32/usb/cdc"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/Drivers/STM32F1xx_HAL_Driver/Inc"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/Drivers/STM32F1xx_HAL_Driver/Src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/STM32F1xx"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/Middlewares/ST/STM32_USB_Device_Library/Core/Inc"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/Middlewares/ST/STM32_USB_Device_Library/Core/Src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/Middlewares/OpenAMP"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/Middlewares/OpenAMP/open-amp/lib/include"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/Middlewares/OpenAMP/libmetal/lib/include"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/Middlewares/OpenAMP/virtual_driver"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-cmsis/CMSIS/Core/Include"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/Drivers/CMSIS/Device/ST/STM32F1xx/Include"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/Drivers/CMSIS/Device/ST/STM32F1xx/Source/Templates/gcc"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-cmsis/CMSIS/DSP/Include"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-cmsis/CMSIS/DSP/PrivateInclude"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/cores/arduino"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/variants/STM32F1xx/F103C4T_F103C6(T-U)"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/libraries/CMSIS_DSP/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/libraries/EEPROM/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/libraries/IWatchdog/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/libraries/Keyboard/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/libraries/Mouse/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/libraries/SPI/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/libraries/Servo/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/libraries/SoftwareSerial/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/libraries/SrcWrapper/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/libraries/Wire/src"/>
+									<listOptionValue builtIn="false" value="${HOME}/Desktop/GitHub/Angel_Night-light/include"/>
+									<listOptionValue builtIn="false" value="${HOME}/Desktop/GitHub/Angel_Night-light/src"/>
+									<listOptionValue builtIn="false" value="${HOME}/Desktop/GitHub/Angel_Night-light/lib/SysTick"/>
+									<listOptionValue builtIn="false" value="${HOME}/Desktop/GitHub/Angel_Night-light/lib/ADXL345"/>
+									<listOptionValue builtIn="false" value="${HOME}/Desktop/GitHub/Angel_Night-light/lib/Light"/>
+									<listOptionValue builtIn="false" value="${HOME}/.platformio/packages/framework-libopencm3"/>
+									<listOptionValue builtIn="false" value="${HOME}/.platformio/packages/framework-libopencm3/include"/>
 								</option>
 								<option id="org.eclipse.cdt.build.core.settings.holder.symbols.1743427839" name="Symbols" superClass="org.eclipse.cdt.build.core.settings.holder.symbols" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="PLATFORMIO=50200"/>
 									<listOptionValue builtIn="false" value="STM32F103x6"/>
 									<listOptionValue builtIn="false" value="STM32F1"/>
-									<listOptionValue builtIn="false" value="STM32F1xx"/>
-									<listOptionValue builtIn="false" value="ARDUINO=10808"/>
-									<listOptionValue builtIn="false" value="ARDUINO_ARCH_STM32"/>
-									<listOptionValue builtIn="false" value="ARDUINO_GENERIC_F103C6TX"/>
-									<listOptionValue builtIn="false" value="BOARD_NAME=&quot;GENERIC_F103C6TX&quot;"/>
-									<listOptionValue builtIn="false" value="HAL_UART_MODULE_ENABLED"/>
-									<listOptionValue builtIn="false" value="USE_FULL_LL_DRIVER"/>
-									<listOptionValue builtIn="false" value="VARIANT_H=&quot;variant_generic.h&quot;"/>
+									<listOptionValue builtIn="false" value="F_CPU=72000000L"/>
+									<listOptionValue builtIn="false" value="__PLATFORMIO_BUILD_DEBUG__"/>
 								</option>
 								<inputType id="org.eclipse.cdt.build.core.settings.holder.inType.919136836" languageId="org.eclipse.cdt.core.assembly" languageName="Assembly" sourceContentType="org.eclipse.cdt.core.asmSource" superClass="org.eclipse.cdt.build.core.settings.holder.inType"/>
 							</tool>
 							<tool id="org.eclipse.cdt.build.core.settings.holder.1146422798" name="GNU C++" superClass="org.eclipse.cdt.build.core.settings.holder">
 								<option id="org.eclipse.cdt.build.core.settings.holder.incpaths.650084869" name="Include Paths" superClass="org.eclipse.cdt.build.core.settings.holder.incpaths" useByScannerDiscovery="false" valueType="includePath">
-									<listOptionValue builtIn="false" value="/192.168.1.202/M-TecksEAC/Personnel/Abgrall/Perso/Dvpmt/Angel_Night-light/include"/>
-									<listOptionValue builtIn="false" value="/192.168.1.202/M-TecksEAC/Personnel/Abgrall/Perso/Dvpmt/Angel_Night-light/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/cores/arduino/avr"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/cores/arduino/stm32"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/cores/arduino/stm32/LL"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/cores/arduino/stm32/usb"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/cores/arduino/stm32/OpenAMP"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/cores/arduino/stm32/usb/hid"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/cores/arduino/stm32/usb/cdc"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/Drivers/STM32F1xx_HAL_Driver/Inc"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/Drivers/STM32F1xx_HAL_Driver/Src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/STM32F1xx"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/Middlewares/ST/STM32_USB_Device_Library/Core/Inc"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/Middlewares/ST/STM32_USB_Device_Library/Core/Src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/Middlewares/OpenAMP"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/Middlewares/OpenAMP/open-amp/lib/include"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/Middlewares/OpenAMP/libmetal/lib/include"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/Middlewares/OpenAMP/virtual_driver"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-cmsis/CMSIS/Core/Include"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/Drivers/CMSIS/Device/ST/STM32F1xx/Include"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/Drivers/CMSIS/Device/ST/STM32F1xx/Source/Templates/gcc"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-cmsis/CMSIS/DSP/Include"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-cmsis/CMSIS/DSP/PrivateInclude"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/cores/arduino"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/variants/STM32F1xx/F103C4T_F103C6(T-U)"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/libraries/CMSIS_DSP/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/libraries/EEPROM/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/libraries/IWatchdog/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/libraries/Keyboard/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/libraries/Mouse/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/libraries/SPI/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/libraries/Servo/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/libraries/SoftwareSerial/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/libraries/SrcWrapper/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/libraries/Wire/src"/>
+									<listOptionValue builtIn="false" value="${HOME}/Desktop/GitHub/Angel_Night-light/include"/>
+									<listOptionValue builtIn="false" value="${HOME}/Desktop/GitHub/Angel_Night-light/src"/>
+									<listOptionValue builtIn="false" value="${HOME}/Desktop/GitHub/Angel_Night-light/lib/SysTick"/>
+									<listOptionValue builtIn="false" value="${HOME}/Desktop/GitHub/Angel_Night-light/lib/ADXL345"/>
+									<listOptionValue builtIn="false" value="${HOME}/Desktop/GitHub/Angel_Night-light/lib/Light"/>
+									<listOptionValue builtIn="false" value="${HOME}/.platformio/packages/framework-libopencm3"/>
+									<listOptionValue builtIn="false" value="${HOME}/.platformio/packages/framework-libopencm3/include"/>
 								</option>
 								<option id="org.eclipse.cdt.build.core.settings.holder.symbols.2055633423" name="Symbols" superClass="org.eclipse.cdt.build.core.settings.holder.symbols" useByScannerDiscovery="false" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="PLATFORMIO=50200"/>
 									<listOptionValue builtIn="false" value="STM32F103x6"/>
 									<listOptionValue builtIn="false" value="STM32F1"/>
-									<listOptionValue builtIn="false" value="STM32F1xx"/>
-									<listOptionValue builtIn="false" value="ARDUINO=10808"/>
-									<listOptionValue builtIn="false" value="ARDUINO_ARCH_STM32"/>
-									<listOptionValue builtIn="false" value="ARDUINO_GENERIC_F103C6TX"/>
-									<listOptionValue builtIn="false" value="BOARD_NAME=&quot;GENERIC_F103C6TX&quot;"/>
-									<listOptionValue builtIn="false" value="HAL_UART_MODULE_ENABLED"/>
-									<listOptionValue builtIn="false" value="USE_FULL_LL_DRIVER"/>
-									<listOptionValue builtIn="false" value="VARIANT_H=&quot;variant_generic.h&quot;"/>
+									<listOptionValue builtIn="false" value="F_CPU=72000000L"/>
+									<listOptionValue builtIn="false" value="__PLATFORMIO_BUILD_DEBUG__"/>
 								</option>
 								<inputType id="org.eclipse.cdt.build.core.settings.holder.inType.445650141" languageId="org.eclipse.cdt.core.g++" languageName="GNU C++" sourceContentType="org.eclipse.cdt.core.cxxSource,org.eclipse.cdt.core.cxxHeader" superClass="org.eclipse.cdt.build.core.settings.holder.inType"/>
 							</tool>
 							<tool id="org.eclipse.cdt.build.core.settings.holder.1637357529" name="GNU C" superClass="org.eclipse.cdt.build.core.settings.holder">
 								<option id="org.eclipse.cdt.build.core.settings.holder.incpaths.1246337321" name="Include Paths" superClass="org.eclipse.cdt.build.core.settings.holder.incpaths" useByScannerDiscovery="false" valueType="includePath">
-									<listOptionValue builtIn="false" value="/192.168.1.202/M-TecksEAC/Personnel/Abgrall/Perso/Dvpmt/Angel_Night-light/include"/>
-									<listOptionValue builtIn="false" value="/192.168.1.202/M-TecksEAC/Personnel/Abgrall/Perso/Dvpmt/Angel_Night-light/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/cores/arduino/avr"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/cores/arduino/stm32"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/cores/arduino/stm32/LL"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/cores/arduino/stm32/usb"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/cores/arduino/stm32/OpenAMP"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/cores/arduino/stm32/usb/hid"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/cores/arduino/stm32/usb/cdc"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/Drivers/STM32F1xx_HAL_Driver/Inc"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/Drivers/STM32F1xx_HAL_Driver/Src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/STM32F1xx"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/Middlewares/ST/STM32_USB_Device_Library/Core/Inc"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/Middlewares/ST/STM32_USB_Device_Library/Core/Src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/Middlewares/OpenAMP"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/Middlewares/OpenAMP/open-amp/lib/include"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/Middlewares/OpenAMP/libmetal/lib/include"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/Middlewares/OpenAMP/virtual_driver"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-cmsis/CMSIS/Core/Include"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/Drivers/CMSIS/Device/ST/STM32F1xx/Include"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/system/Drivers/CMSIS/Device/ST/STM32F1xx/Source/Templates/gcc"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-cmsis/CMSIS/DSP/Include"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-cmsis/CMSIS/DSP/PrivateInclude"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/cores/arduino"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/variants/STM32F1xx/F103C4T_F103C6(T-U)"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/libraries/CMSIS_DSP/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/libraries/EEPROM/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/libraries/IWatchdog/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/libraries/Keyboard/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/libraries/Mouse/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/libraries/SPI/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/libraries/Servo/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/libraries/SoftwareSerial/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/libraries/SrcWrapper/src"/>
-									<listOptionValue builtIn="false" value="${USERPROFILE}/.platformio/packages/framework-arduinoststm32/libraries/Wire/src"/>
+									<listOptionValue builtIn="false" value="${HOME}/Desktop/GitHub/Angel_Night-light/include"/>
+									<listOptionValue builtIn="false" value="${HOME}/Desktop/GitHub/Angel_Night-light/src"/>
+									<listOptionValue builtIn="false" value="${HOME}/Desktop/GitHub/Angel_Night-light/lib/SysTick"/>
+									<listOptionValue builtIn="false" value="${HOME}/Desktop/GitHub/Angel_Night-light/lib/ADXL345"/>
+									<listOptionValue builtIn="false" value="${HOME}/Desktop/GitHub/Angel_Night-light/lib/Light"/>
+									<listOptionValue builtIn="false" value="${HOME}/.platformio/packages/framework-libopencm3"/>
+									<listOptionValue builtIn="false" value="${HOME}/.platformio/packages/framework-libopencm3/include"/>
 								</option>
 								<option id="org.eclipse.cdt.build.core.settings.holder.symbols.2122043341" name="Symbols" superClass="org.eclipse.cdt.build.core.settings.holder.symbols" useByScannerDiscovery="false" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="PLATFORMIO=50200"/>
 									<listOptionValue builtIn="false" value="STM32F103x6"/>
 									<listOptionValue builtIn="false" value="STM32F1"/>
-									<listOptionValue builtIn="false" value="STM32F1xx"/>
-									<listOptionValue builtIn="false" value="ARDUINO=10808"/>
-									<listOptionValue builtIn="false" value="ARDUINO_ARCH_STM32"/>
-									<listOptionValue builtIn="false" value="ARDUINO_GENERIC_F103C6TX"/>
-									<listOptionValue builtIn="false" value="BOARD_NAME=&quot;GENERIC_F103C6TX&quot;"/>
-									<listOptionValue builtIn="false" value="HAL_UART_MODULE_ENABLED"/>
-									<listOptionValue builtIn="false" value="USE_FULL_LL_DRIVER"/>
-									<listOptionValue builtIn="false" value="VARIANT_H=&quot;variant_generic.h&quot;"/>
+									<listOptionValue builtIn="false" value="F_CPU=72000000L"/>
+									<listOptionValue builtIn="false" value="__PLATFORMIO_BUILD_DEBUG__"/>
 								</option>
 								<inputType id="org.eclipse.cdt.build.core.settings.holder.inType.207004812" languageId="org.eclipse.cdt.core.gcc" languageName="GNU C" sourceContentType="org.eclipse.cdt.core.cSource,org.eclipse.cdt.core.cHeader" superClass="org.eclipse.cdt.build.core.settings.holder.inType"/>
 							</tool>
@@ -384,7 +180,7 @@
 	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
 	<storageModule moduleId="refreshScope" versionNumber="2">
 		<configuration configurationName="Default">
-			<resource resourceType="PROJECT" workspacePath="/genericSTM32F103C6"/>
+			<resource resourceType="PROJECT" workspacePath="/uno"/>
 		</configuration>
 	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
