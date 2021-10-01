@@ -47,36 +47,50 @@ void Adxl345::begin()
 
 	/* Configure the ADXL345 */
 	//Config
+
 	/**
-	REGISTER DEFINITIONS
+	\section adxl345_regs REGISTER DEFINITIONS
+
+	From datasheet. Copied in order to keep information during developpement.
 	*/
 
 	//Initialisation
 	/**
-	\li Register 0x31—DATA_FORMAT (Read/Write)
-	D7 : SELF_TEST ; D6 : SPI ; D5 : INT_INVERT ; D4 : 0 ; D3 : FULL_RES ; D2 : Justify ; D1, D0 : Range
+	\subsection adxl345_regs_31 Register 0x31—DATA_FORMAT (Read/Write)
+
+	<table>
+	<tr><th> Bits	<th> Function			<th> Choosen value
+	<tr><td> D7		<td> SELF_TEST			<td> 0
+	<tr><td> D6		<td> SPI				<td> 0
+	<tr><td> D5		<td> INT_INVERT			<td> 0
+	<tr><td> D4		<td> 0					<td> 0
+	<tr><td> D3		<td> FULL_RES			<td> 0
+	<tr><td> D2		<td> Justify			<td> 0
+	<tr><td> D1		<td rowspan="2"> Range	<td> 0
+	<tr><td> D0 							<td> 0
+	</table>
 
 	The DATA_FORMAT register controls the presentation of data
 	to Register 0x32 through Register 0x37. All data, except that for
 	the ±16 g range, must be clipped to avoid rollover.
 
-	SELF_TEST Bit
+	\paragraph adxl345_regs_31_p1 SELF_TEST Bit
 
 	A setting of 1 in the SELF_TEST bit applies a self-test force to
 	the sensor, causing a shift in the output data. A value of 0 disables
 	the self-test force.
 
-	SPI Bit
+	\paragraph adxl345_regs_31_p2 SPI Bit
 
 	A value of 1 in the SPI bit sets the device to 3-wire SPI mode,
 	and a value of 0 sets the device to 4-wire SPI mode.
 
-	INT_INVERT
+	\paragraph adxl345_regs_31_p3 INT_INVERT
 
 	A value of 0 in the INT_INVERT bit sets the interrupts to active
 	high, and a value of 1 sets the interrupts to active low.
 
-	FULL_RES Bit
+	\paragraph adxl345_regs_31_p4 FULL_RES Bit
 
 	When this bit is set to a value of 1, the device is in full resolution
 	mode, where the output resolution increases with the g range
@@ -84,49 +98,65 @@ void Adxl345::begin()
 	the FULL_RES bit is set to 0, the device is in 10-bit mode, and
 	the range bits determine the maximum g range and scale factor.
 
-	Justify Bit
+	\paragraph adxl345_regs_31_p5 Justify Bit
 
 	A setting of 1 in the justify bit selects left-justified (MSB) mode,
 	and a setting of 0 selects right-justified mode with sign extension.
 
-	Range Bits
+	\paragraph adxl345_regs_31_p6 Range Bits
 
 	These bits set the g range as described in Table 21.
 
-	Table 21. g Range Setting
-	Setting
-	D1	D0	g Range
-	0	0	±2 g
-	0	1	±4 g
-	1	0	±8 g
-	1	1	±16 g
+	\paragraph adxl345_regs_31_p7 Table 21. g Range Setting
+
+	<table>
+	<tr><th colspan="2"> Setting	<th rowspan="2"> g Range
+	<tr><th> D1		<th> D0
+	<tr><td> 0		<td> 0			<td> ±2 g
+	<tr><td> 0		<td> 1			<td> ±4 g
+	<tr><td> 1		<td> 0			<td> ±8 g
+	<tr><td> 1		<td> 1			<td> ±16 g
+	</table>
 	*/
 	comByte(0x31, true, (0 << 7) + (0 << 6) + (0 << 5) + (0 << 3) + (0 << 2) + 0);
 
 
 	/**
-	\li Register 0x38—FIFO_CTL (Read/Write)
+	\subsection adxl345_regs_38 Register 0x38—FIFO_CTL (Read/Write)
 
-	D7, D6 : FIFO_MODE ; D5 : Trigger ; D4, D3, D2, D1, D0 : Samples
+	<table>
+	<tr><th> Bits	<th> Function				<th> Choosen value
+	<tr><td> D7		<td rowspan="2"> FIFO_MODE	<td> 0
+	<tr><td> D6			 						<td> 0
+	<tr><td> D5		<td> Trigger				<td> 0
+	<tr><td> D4		<td rowspan="5"> Samples	<td> 0
+	<tr><td> D3									<td> 0
+	<tr><td> D2									<td> 0
+	<tr><td> D1							 		<td> 0
+	<tr><td> D0 								<td> 0
+	</table>
 
-	FIFO_TRIG Bit
+	\paragraph adxl345_regs_38_p1 FIFO_TRIG Bit
 
 	These bits set the FIFO mode, as described in Table 22.
 
-	Table 22. FIFO Modes
-	Setting
-	D7	D6	Mode		Function
-	0	0	Bypass		FIFO is bypassed.
-	0	1	FIFO		FIFO collects up to 32 values and then stops collecting data, collecting new data only when FIFO is not full.
-	1	0	Stream		FIFO holds the last 32 data values. When FIFO is full, the oldest data is overwritten with newer data.
-	1	1	Trigger		When triggered by the trigger bit, FIFO holds the last data samples before the trigger event and then continues to collect data until full. New data is collected only when FIFO is not full.
+	\paragraph adxl345_regs_38_p2 Table 22. FIFO Modes
 
-	Trigger Bit
+	<table>
+	<tr><th colspan="2"> Setting <td colspan="2">
+	<tr><th> D7		<th> D6		<th> Mode		<th> Function
+	<tr><td> 0		<td> 0		<td> Bypass		<td> FIFO is bypassed.
+	<tr><td> 0		<td> 1		<td> FIFO		<td> FIFO collects up to 32 values and then stops collecting data, collecting new data only when FIFO is not full.
+	<tr><td> 1		<td> 0		<td> Stream		<td> FIFO holds the last 32 data values. When FIFO is full, the oldest data is overwritten with newer data.
+	<tr><td> 1		<td> 1		<td> Trigger	<td> When triggered by the trigger bit, FIFO holds the last data samples before the trigger event and then continues to collect data until full. New data is collected only when FIFO is not full.
+	</table>
+
+	\paragraph adxl345_regs_38_p3 Trigger Bit
 
 	A value of 0 in the trigger bit links the trigger event of trigger mode
 	to INT1, and a value of 1 links the trigger event to INT2.
 
-	Samples Bits
+	\paragraph adxl345_regs_38_p4 Samples Bits
 
 	The function of these bits depends on the FIFO mode selected
 	(see Table 23). Entering a value of 0 in the samples bits immediately
@@ -135,17 +165,21 @@ void Adxl345::begin()
 	may occur if a value of 0 is used for the samples bits when trigger
 	mode is used.
 
-	Table 23. Samples Bits Functions
-	FIFO Mode	Samples Bits Function
-	Bypass		None.
-	FIFO		Specifies how many FIFO entries are needed to trigger a watermark interrupt.
-	Stream		Specifies how many FIFO entries are needed to trigger a watermark interrupt.
-	Trigger		Specifies how many FIFO samples are retained in the FIFO buffer before a trigger event.
+	\paragraph adxl345_regs_38_p5 Table 23. Samples Bits Functions
+
+	<table>
+	<tr><th> FIFO Mode	<th> Samples Bits Function
+	<tr><td> Bypass		<td> None.
+	<tr><td> FIFO		<td> Specifies how many FIFO entries are needed to trigger a watermark interrupt.
+	<tr><td> Stream		<td> Specifies how many FIFO entries are needed to trigger a watermark interrupt.
+	<tr><td> Trigger	<td> Specifies how many FIFO samples are retained in the FIFO buffer before a trigger event.
+	</table>
 	*/
 	comByte(0x38, true, (0 << 6) + (0 << 5) + 0);
 
 	/**
-	\li Register 0x1E, Register 0x1F, Register 0x20—OFSX, OFSY, OFSZ (Read/Write)
+	\subsection adxl345_regs_1E1F20 Register 0x1E, Register 0x1F, Register 0x20—OFSX, OFSY, OFSZ (Read/Write)
+
 	The OFSX, OFSY, and OFSZ registers are each eight bits and offer user-set offset adjustments in twos complement format with a scale factor of 15.6 mg/LSB (that is, 0x7F = 2 g).
 	The value stored in the offset registers is automatically added to the acceleration data, and the resulting value is stored in the output data registers. For additional information regarding offset
 	calibration and the use of the offset registers, refer to the Offset Calibration section.
@@ -156,16 +190,28 @@ void Adxl345::begin()
 
 
 	/**
-	\li Register 0x2C—BW_RATE (Read/Write)
-	D7 : 0 ; D6 : 0 ; D5 : 0 ; D4 : LOW_POWER ; D3, D2, D1, D0 : Rate
+	\subsection adxl345_regs_2C Register 0x2C—BW_RATE (Read/Write)
 
-	LOW_POWER Bit
+	<table>
+	<tr><th> Bits	<th> Function				<th> Choosen value
+	<tr><td> D7		<td> 0						<td> 0
+	<tr><td> D6		<td> 0 						<td> 0
+	<tr><td> D5		<td> 0						<td> 0
+	<tr><td> D4		<td> LOW_POWER				<td> 0
+	<tr><td> D3		<td rowspan="4"> Rate		<td> 1
+	<tr><td> D2									<td> 0
+	<tr><td> D1							 		<td> 1
+	<tr><td> D0 								<td> 0
+	</table>
+
+	\paragraph adxl345_regs_2C_p1 LOW_POWER Bit
 
 	A setting of 0 in the LOW_POWER bit selects normal operation,
 	and a setting of 1 selects reduced power operation, which has
 	somewhat higher noise (see the Power Modes section for details).
 
-	Rate Bits
+	\paragraph adxl345_regs_2C_p2 Rate Bits
+
 	These bits select the device bandwidth and output data rate (see
 	Table 7 and Table 8 for details). The default value is 0x0A, which
 	translates to a 100 Hz output data rate. An output data rate should
@@ -179,14 +225,16 @@ void Adxl345::begin()
 
 	//Tap et Double Tap
 	/**
-	\li Register 0x1D—THRESH_TAP (Read/Write)
+	\subsection adxl345_regs_1D Register 0x1D—THRESH_TAP (Read/Write)
+
 	The THRESH_TAP register is eight bits and holds the threshold value for tap interrupts. The data format is unsigned, therefore, the magnitude of the tap event is compared with the value in THRESH_TAP for normal tap detection. The scale factor is
 	62.5 mg/LSB (that is, 0xFF = 16 g). A value of 0 may result in undesirable behavior if single tap/double tap interrupts are enabled.
 	*/
 	comByte(0x1D, true, 0);
 
 	/**
-	\li Register 0x21—DUR (Read/Write)
+	\subsection adxl345_regs_21 Register 0x21—DUR (Read/Write)
+
 	The DUR register is eight bits and contains an unsigned time
 	value representing the maximum time that an event must be
 	above the THRESH_TAP threshold to qualify as a tap event. The
@@ -196,7 +244,8 @@ void Adxl345::begin()
 	comByte(0x21, true, 0);
 
 	/**
-	\li Register 0x22—Latent (Read/Write)
+	\subsection adxl345_regs_22 Register 0x22—Latent (Read/Write)
+
 	The latent register is eight bits and contains an unsigned time
 	value representing the wait time from the detection of a tap
 	event to the start of the time window (defined by the window
@@ -207,7 +256,8 @@ void Adxl345::begin()
 	comByte(0x22, true, 0);
 
 	/**
-	\li Register 0x23—Window (Read/Write)
+	\subsection adxl345_regs_23 Register 0x23—Window (Read/Write)
+
 	The window register is eight bits and contains an unsigned time
 	value representing the amount of time after the expiration of the
 	latency time (determined by the latent register) during which a
@@ -217,16 +267,27 @@ void Adxl345::begin()
 	comByte(0x23, true, 0);
 
 	/**
-	\li Register 0x2A—TAP_AXES (Read/Write)
-	D7 : 0 ; D6 : 0 ; D5 : 0 ; D4 : 0 ; D3 : Suppress ; D2 : TAP_X enable ; D1 : TAP_Y enable ; D0 : TAP_Z enable
+	\subsection adxl345_regs_2A Register 0x2A—TAP_AXES (Read/Write)
 
-	Suppress Bit
+	<table>
+	<tr><th> Bits	<th> Function				<th> Choosen value
+	<tr><td> D7		<td> 0						<td> 0
+	<tr><td> D6		<td> 0 						<td> 0
+	<tr><td> D5		<td> 0						<td> 0
+	<tr><td> D4		<td> 0						<td> 0
+	<tr><td> D3		<td> Suppress				<td> 0
+	<tr><td> D2		<td> TAP_X enable			<td> 0
+	<tr><td> D1		<td> TAP_Y enable			<td> 0
+	<tr><td> D0 	<td> TAP_Z enable			<td> 0
+	</table>
+
+	\paragraph adxl345_regs_2A_p1 Suppress Bit
 
 	Setting the suppress bit suppresses double tap detection if
 	acceleration greater than the value in THRESH_TAP is present
 	between taps. See the Tap Detection section for more details.
 
-	TAP_x Enable Bits
+	\paragraph adxl345_regs_2A_p2 TAP_x Enable Bits
 
 	A setting of 1 in the TAP_X enable, TAP_Y enable, or TAP_Z
 	enable bit enables x-, y-, or z-axis participation in tap detection.
@@ -239,11 +300,21 @@ void Adxl345::begin()
 
 	//Activity and Inactivity
 	/**
-	\li Register 0x27—ACT_INACT_CTL (Read/Write)
-	D7 : ACT ac/dc ; D6 : ACT_X enable ; D5 : ACT_Y enable ; D4 : ACT_Z enable
-	D3 : INACT ac/dc ; D2 : INACT_X enable ; D1 : INACT_Y enable ; D0 : INACT_Z enable
+	\subsection adxl345_regs_27 Register 0x27—ACT_INACT_CTL (Read/Write)
 
-	ACT AC/DC and INACT AC/DC Bits
+	<table>
+	<tr><th> Bits	<th> Function				<th> Choosen value
+	<tr><td> D7		<td> ACT ac/dc				<td> 0
+	<tr><td> D6		<td> ACT_X enable			<td> 0
+	<tr><td> D5		<td> ACT_Y enable			<td> 0
+	<tr><td> D4		<td> ACT_Z enable			<td> 0
+	<tr><td> D3		<td> INACT ac/dc			<td> 0
+	<tr><td> D2		<td> INACT_X enable			<td> 0
+	<tr><td> D1		<td> INACT_Y enable			<td> 0
+	<tr><td> D0 	<td> INACT_Z enable			<td> 0
+	</table>
+
+	\paragraph adxl345_regs_27_p1 ACT AC/DC and INACT AC/DC Bits
 
 	A setting of 0 selects dc-coupled operation, and a setting of 1
 	enables ac-coupled operation. In dc-coupled operation, the
@@ -265,7 +336,7 @@ void Adxl345::begin()
 	THRESH_INACT for the time in TIME_INACT, the device is
 	considered inactive and the inactivity interrupt is triggered.
 
-	ACT_x Enable Bits and INACT_x Enable Bits
+	\paragraph adxl345_regs_27_p2 ACT_x Enable Bits and INACT_x Enable Bits
 
 	A setting of 1 enables x-, y-, or z-axis participation in detecting
 	activity or inactivity. A setting of 0 excludes the selected axis from
@@ -280,7 +351,8 @@ void Adxl345::begin()
 	comByte(0x27, true, (0 << 7) + (0 << 6) + (0 << 5) + (0 << 4) + (0 << 3) + (0 << 2) + (0 << 1) + (0 << 0));
 
 	/**
-	\li Register 0x24—THRESH_ACT (Read/Write)
+	\subsection adxl345_regs_24 Register 0x24—THRESH_ACT (Read/Write)
+
 	The THRESH_ACT register is eight bits and holds the threshold
 	value for detecting activity. The data format is unsigned, so the
 	magnitude of the activity event is compared with the value in
@@ -291,7 +363,8 @@ void Adxl345::begin()
 	comByte(0x24, true, 0);
 
 	/**
-	\li Register 0x25—THRESH_INACT (Read/Write)
+	\subsection adxl345_regs_25 Register 0x25—THRESH_INACT (Read/Write)
+
 	The THRESH_INACT register is eight bits and holds the threshold
 	value for detecting inactivity. The data format is unsigned, so
 	the magnitude of the inactivity event is compared with the value
@@ -302,7 +375,8 @@ void Adxl345::begin()
 	comByte(0x25, true, 0);
 
 	/**
-	\li Register 0x26—TIME_INACT (Read/Write)
+	\subsection adxl345_regs_26 Register 0x26—TIME_INACT (Read/Write)
+
 	The TIME_INACT register is eight bits and contains an unsigned
 	time value representing the amount of time that acceleration
 	must be less than the value in the THRESH_INACT register for
@@ -322,7 +396,8 @@ void Adxl345::begin()
 
 	//Free Fall
 	/**
-	\li Register 0x28—THRESH_FF (Read/Write) LOW_POWER Bit
+	\subsection adxl345_regs_28 Register 0x28—THRESH_FF (Read/Write) LOW_POWER Bit
+
 	The THRESH_FF register is eight bits and holds the threshold
 	value, in unsigned format, for free-fall detection. The acceleration on
 	all axes is compared with the value in THRESH_FF to determine if
@@ -334,7 +409,8 @@ void Adxl345::begin()
 	comByte(0x28, true, 0);
 
 	/**
-	\li Register 0x29—TIME_FF (Read/Write)
+	\subsection adxl345_regs_29 Register 0x29—TIME_FF (Read/Write)
+
 	The TIME_FF register is eight bits and stores an unsigned time
 	value representing the minimum time that the value of all axes
 	must be less than THRESH_FF to generate a free-fall interrupt.
@@ -348,9 +424,19 @@ void Adxl345::begin()
 
 	//Interrupts
 	/**
-	\li Register 0x2F—INT_MAP (R/W)
-	D7 : DATA_READY ; D6 : SINGLE_TAP ; D5 : DOUBLE_TAP ; D4 : Activity
-	D3 : Inactivity ; D2 : FREE_FALL ; D1 : Watermark ; D0 : Overrun
+	\subsection adxl345_regs_2F Register 0x2F—INT_MAP (R/W)
+
+	<table>
+	<tr><th> Bits	<th> Function			<th> Choosen value
+	<tr><td> D7		<td> DATA_READY			<td> 0
+	<tr><td> D6		<td> SINGLE_TAP			<td> 0
+	<tr><td> D5		<td> DOUBLE_TAP			<td> 0
+	<tr><td> D4		<td> Activity			<td> 0
+	<tr><td> D3		<td> Inactivity			<td> 0
+	<tr><td> D2		<td> FREE_FALL			<td> 0
+	<tr><td> D1		<td> Watermark			<td> 0
+	<tr><td> D0 	<td> Overrun			<td> 0
+	</table>
 
 	Any bits set to 0 in this register send their respective interrupts to
 	the INT1 pin, whereas bits set to 1 send their respective interrupts
@@ -359,9 +445,19 @@ void Adxl345::begin()
 	comByte(0x2F, true, (0 << 7) + (0 << 6) + (0 << 5) + (0 << 4) + (0 << 3) + (0 << 2) + (0 << 1) + (0 << 0));
 
 	/**
-	\li Register 0x2E—INT_ENABLE (Read/Write)
-	D7 : DATA_READY ; D6 : SINGLE_TAP ; D5 : DOUBLE_TAP ; D4 : Activity
-	D3 : Inactivity ; D2 : FREE_FALL ; D1 : Watermark ; D0 : Overrun
+	\subsection adxl345_regs_2E Register 0x2E—INT_ENABLE (Read/Write)
+
+	<table>
+	<tr><th> Bits	<th> Function			<th> Choosen value
+	<tr><td> D7		<td> DATA_READY			<td> 0
+	<tr><td> D6		<td> SINGLE_TAP			<td> 0
+	<tr><td> D5		<td> DOUBLE_TAP			<td> 0
+	<tr><td> D4		<td> Activity			<td> 0
+	<tr><td> D3		<td> Inactivity			<td> 0
+	<tr><td> D2		<td> FREE_FALL			<td> 0
+	<tr><td> D1		<td> Watermark			<td> 0
+	<tr><td> D0 	<td> Overrun			<td> 0
+	</table>
 
 	Setting bits in this register to a value of 1 enables their respective
 	functions to generate interrupts, whereas a value of 0 prevents
@@ -379,10 +475,21 @@ void Adxl345::begin()
 
 	//Start and Power Ctrl
 	/**
-	\li Register 0x2D—POWER_CTL (Read/Write)
-	D7 : 0 ; D6 : 0 ; D5 : Link ; D4 : AUTO_SLEEP ; D3 : Measure ; D2 : Sleep ; D1, D0 : Wakeup
+	\subsection adxl345_regs_2D Register 0x2D—POWER_CTL (Read/Write)
 
-	Link Bit
+	<table>
+	<tr><th> Bits	<th> Function			<th> Choosen value
+	<tr><td> D7		<td> 0					<td> 0
+	<tr><td> D6		<td> 0					<td> 0
+	<tr><td> D5		<td> Link				<td> 0
+	<tr><td> D4		<td> AUTO_SLEEP			<td> 0
+	<tr><td> D3		<td> Measure			<td> 1
+	<tr><td> D2		<td> Sleep				<td> 0
+	<tr><td> D1		<td rowspan="2"> Wakeup	<td> 0
+	<tr><td> D0 							<td> 0
+	</table>
+
+	\paragraph adxl345_regs_2D_p1 Link Bit
 
 	A setting of 1 in the link bit with both the activity and inactivity
 	functions enabled delays the start of the activity function until
@@ -400,7 +507,7 @@ void Adxl345::begin()
 	may have additional noise, especially if the device was asleep
 	when the bit was cleared.
 
-	AUTO_SLEEP Bit
+	\paragraph adxl345_regs_2D_p2 AUTO_SLEEP Bit
 
 	If the link bit is set, a setting of 1 in the AUTO_SLEEP bit enables
 	the auto-sleep functionality. In this mode, the ADXL345 auto-
@@ -427,14 +534,14 @@ void Adxl345::begin()
 	bit is cleared may have additional noise, especially if the device
 	was asleep when the bit was cleared.
 
-	Measure Bit
+	\paragraph adxl345_regs_2D_p3 Measure Bit
 
 	A setting of 0 in the measure bit places the part into standby mode,
 	and a setting of 1 places the part into measurement mode. The
 	ADXL345 powers up in standby mode with minimum power
 	consumption.
 
-	Sleep Bit
+	\paragraph adxl345_regs_2D_p4 Sleep Bit
 
 	A setting of 0 in the sleep bit puts the part into the normal mode
 	of operation, and a setting of 1 places the part into sleep mode.
@@ -453,17 +560,20 @@ void Adxl345::begin()
 	cleared may have additional noise, especially if the device was
 	asleep when the bit was cleared.
 
-	Wakeup Bits
+	\paragraph adxl345_regs_2D_p5 Wakeup Bits
 
 	These bits control the frequency of readings in sleep mode as
 	described in Table 20.
-	Table 20. Frequency of Readings in Sleep Mode
-	Setting
-	D1	D0	Frequency (Hz)
-	0	0	8
-	0	1	4
-	1	0	2
-	1	1	1
+
+	\paragraph adxl345_regs_2D_p6 Table 20. Frequency of Readings in Sleep Mode
+	<table>
+	<tr><th colspan="2"> Setting <td>
+	<tr><th> D1		<th> D0		<th> Frequency (Hz)
+	<tr><th> 0		<td> 0		<td> 8
+	<tr><th> 0		<td> 1		<td> 4
+	<tr><th> 1		<td> 0		<td> 2
+	<tr><th> 1		<td> 1		<td> 1
+	</table>
 	*/
 	comByte(0x2D, true, (0 << 5) + (0 << 4) + (1 << 3) + (0 << 2) + 0);
 
@@ -471,7 +581,8 @@ void Adxl345::begin()
 
 	//Read Only registers
 	/**
-	\li Register 0x32 to Register 0x37—DATAX0, DATAX1, DATAY0, DATAY1, DATAZ0, DATAZ1 (Read Only)
+	\subsection adxl345_regs_32-37 Register 0x32 to Register 0x37—DATAX0, DATAX1, DATAY0, DATAY1, DATAZ0, DATAZ1 (Read Only)
+
 	These six bytes (Register 0x32 to Register 0x37) are eight bits
 	each and hold the output data for each axis. Register 0x32 and
 	Register 0x33 hold the output data for the x-axis, Register 0x34 and
@@ -487,21 +598,32 @@ void Adxl345::begin()
 
 
 	/**
-	\li Register 0x00—DEVID (Read Only)
+	\subsection adxl345_regs_00 Register 0x00—DEVID (Read Only)
+
 	The DEVID register holds a fixed device ID code of 0xE5 (345 octal).
 	*/
 
 	/**
-	\li Register 0x39—FIFO_STATUS (Read Only)
+	\subsection adxl345_regs_39 Register 0x39—FIFO_STATUS (Read Only)
 
-	D7 : FIFO_TRIG ; D6 : 0 ; D5, D4, D3, D2, D1, D0 : Entries
+	<table>
+	<tr><th> Bits	<th> Function
+	<tr><td> D7		<td> FIFO_TRIG
+	<tr><td> D6		<td> 0
+	<tr><td> D5		<td rowspan="6"> Entries
+	<tr><td> D4
+	<tr><td> D3
+	<tr><td> D2
+	<tr><td> D1
+	<tr><td> D0
+	</table>
 
-	FIFO_MODE Bits
+	\paragraph adxl345_regs_39_p1 FIFO_MODE Bits
 
 	A 1 in the FIFO_TRIG bit corresponds to a trigger event occurring,
 	and a 0 means that a FIFO trigger event has not occurred.
 
-	Entries Bits
+	\paragraph adxl345_regs_39_p2 Entries Bits
 
 	These bits report how many data values are stored in FIFO.
 	Access to collect the data from FIFO is provided through the
@@ -514,10 +636,21 @@ void Adxl345::begin()
 	*/
 
 	/**
-	\li Register 0x2B—ACT_TAP_STATUS (Read Only)
-	D7 : 0 ; D6 : ACT_X source ; D5 : ACT_Y source ; D4 : ACT_Z source ; D3 : Asleep ; D2 : TAP_X source ; D1 : TAP_Y source ; D0 : TAP_Z source
+	\subsection adxl345_regs_2B Register 0x2B—ACT_TAP_STATUS (Read Only)
 
-	ACT_x Source and TAP_x Source Bits
+	<table>
+	<tr><th> Bits	<th> Function
+	<tr><td> D7		<td> 0
+	<tr><td> D6		<td> ACT_X source
+	<tr><td> D5		<td> ACT_Y source
+	<tr><td> D4		<td> ACT_Z source
+	<tr><td> D3		<td> Asleep
+	<tr><td> D2		<td> TAP_X source
+	<tr><td> D1		<td> TAP_Y source
+	<tr><td> D0 	<td> TAP_Z source
+	</table>
+
+	\paragraph adxl345_regs_2B_p1 ACT_x Source and TAP_x Source Bits
 	These bits indicate the first axis involved in a tap or activity
 	event. A setting of 1 corresponds to involvement in the event,
 	and a setting of 0 corresponds to no involvement. When new
@@ -527,7 +660,7 @@ void Adxl345::begin()
 	clears the corresponding source bit when the next activity or
 	single tap/double tap event occurs.
 
-	Asleep Bit
+	\paragraph adxl345_regs_2B_p2 Asleep Bit
 
 	A setting of 1 in the asleep bit indicates that the part is asleep,
 	and a setting of 0 indicates that the part is not asleep. This bit
@@ -537,9 +670,19 @@ void Adxl345::begin()
 	*/
 
 	/**
-	\li Register 0x30—INT_SOURCE (Read Only)
-	D7 : DATA_READY ; D6 : SINGLE_TAP ; D5 : DOUBLE_TAP ; D4 : Activity
-	D3 : Inactivity ; D2 : FREE_FALL ; D1 : Watermark ; D0 : Overrun
+	\subsection adxl345_regs_30 Register 0x30—INT_SOURCE (Read Only)
+
+	<table>
+	<tr><th> Bits	<th> Function
+	<tr><td> D7		<td> DATA_READY
+	<tr><td> D6		<td> SINGLE_TAP
+	<tr><td> D5		<td> DOUBLE_TAP
+	<tr><td> D4		<td> Activity
+	<tr><td> D3		<td> Inactivity
+	<tr><td> D2		<td> FREE_FALL
+	<tr><td> D1		<td> Watermark
+	<tr><td> D0 	<td> Overrun
+	</table>
 
 	Bits set to 1 in this register indicate that their respective functions
 	have triggered an event, whereas a value of 0 indicates that the
