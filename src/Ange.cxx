@@ -265,7 +265,8 @@ void demoColor(void)
 void demoColor2(bool resetMinuterie)
 {
 	static Adxl345::data values, max = {0, 0, 0}, min = {0, 0, 0};
-	static uint16_t incColor = 0x00, incBright = 0x3F, inTime = 20, outTime = 60, time = outTime; //incColor = 0x4AB
+	const uint16_t brightHigh = 0x3F, brightLow = 0x10, inTime = 1700 / (brightHigh - brightLow), outTime = 4000 / (brightHigh - brightLow);
+	static uint16_t incColor = 0x00, incBright = brightHigh, time = outTime;
 	static bool upBright = false, updateColor = true, minuterieOK = true;
 	static uint64_t delayColor = millis(), delayBright = millis(), minuterie = millis(), measAxcel = millis();
 
@@ -317,22 +318,22 @@ void demoColor2(bool resetMinuterie)
 	//Change color
 	if ((millis() - delayColor) > 40)
 	{
-		//if (upColor)
-		//{
-			incColor++;
-			if (incColor >= (uint16_t)(6 *0xFF))
-				incColor = 0x00;
-			//if (incColor == ((uint16_t)(6*0xFF)-1)) //0x10E
-			//	upColor = false;
-		//}
-		//else
-		//{
-		//	incColor--;
-		//	if (incColor == 0x00) //0x4AB
-		//		upColor = true;
-			//if (incColor > (uint16_t)(6 * 0xFF))
-			//	incColor = (uint16_t)(6 * 0xFF) - 1;
-		//}
+		incColor++;
+		if (incColor >= (uint16_t)(6 *0xFF))
+			incColor = 0x00;
+
+		if(axcel.isDoubleTap())
+		{
+			incColor = 0x4AB;
+		}
+
+		if (axcel.isTap())
+		{
+			incColor = 0x00;
+
+		}
+
+
 		delayColor = millis();
 		updateColor = true;
 	}
@@ -342,7 +343,7 @@ void demoColor2(bool resetMinuterie)
 		if (upBright)
 		{
 			incBright++;
-			if (incBright == 0x3F)
+			if (incBright == brightHigh)
 			{
 				upBright = !upBright;
 				time = outTime;
@@ -351,7 +352,7 @@ void demoColor2(bool resetMinuterie)
 		else
 		{
 			incBright--;
-			if (incBright == 0x00)
+			if (incBright == brightLow)
 			{
 				upBright = !upBright;
 				time = inTime;

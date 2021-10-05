@@ -23,14 +23,17 @@ public:
 
 	void begin();
 	data getData();
-	bool isTape();
+	bool isTap();
 	bool isDoubleTap();
 
 private:
 	static const uint8_t bufferSize = 8;
 	uint8_t bufferIn[bufferSize], bufferOut[bufferSize];
 	void com(uint8_t addr, bool setWrite, uint8_t nbData);
-	uint8_t comByte(uint8_t addr, bool setWrite, uint8_t inData = 0);
+	uint8_t comByte(uint8_t addr, bool setWrite = false, uint8_t inData = 0);
+	bool isTapInt = false, isDoubleTapInt = false;
+
+	void updateInterrupt(void);
 };
 
 

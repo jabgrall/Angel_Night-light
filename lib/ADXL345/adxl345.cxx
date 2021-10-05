@@ -67,7 +67,7 @@ void Adxl345::begin()
 	<tr><td> D3		<td> FULL_RES			<td> 0
 	<tr><td> D2		<td> Justify			<td> 0
 	<tr><td> D1		<td rowspan="2"> Range	<td> 0
-	<tr><td> D0 							<td> 0
+	<tr><td> D0 							<td> 1
 	</table>
 
 	The DATA_FORMAT register controls the presentation of data
@@ -118,7 +118,7 @@ void Adxl345::begin()
 	<tr><td> 1		<td> 1			<td> ±16 g
 	</table>
 	*/
-	comByte(0x31, true, (0 << 7) + (0 << 6) + (0 << 5) + (0 << 3) + (0 << 2) + 0);
+	comByte(0x31, true, (0 << 7) + (0 << 6) + (0 << 5) + (0 << 3) + (0 << 2) + (0 << 1) + (1 << 0));
 
 
 	/**
@@ -229,8 +229,10 @@ void Adxl345::begin()
 
 	The THRESH_TAP register is eight bits and holds the threshold value for tap interrupts. The data format is unsigned, therefore, the magnitude of the tap event is compared with the value in THRESH_TAP for normal tap detection. The scale factor is
 	62.5 mg/LSB (that is, 0xFF = 16 g). A value of 0 may result in undesirable behavior if single tap/double tap interrupts are enabled.
+
+	\remark Choosen values: 14000mg : 0xE0.
 	*/
-	comByte(0x1D, true, 0);
+	comByte(0x1D, true, 0xE0);
 
 	/**
 	\subsection adxl345_regs_21 Register 0x21—DUR (Read/Write)
@@ -240,8 +242,10 @@ void Adxl345::begin()
 	above the THRESH_TAP threshold to qualify as a tap event. The
 	scale factor is 625 μs/LSB. A value of 0 disables the single tap/
 	double tap functions.
+
+	\remark Choosen value: 10ms : 0x10
 	*/
-	comByte(0x21, true, 0);
+	comByte(0x21, true, 0x10);
 
 	/**
 	\subsection adxl345_regs_22 Register 0x22—Latent (Read/Write)
@@ -252,8 +256,10 @@ void Adxl345::begin()
 	register) during which a possible second tap event can be detected.
 	The scale factor is 1.25 ms/LSB. A value of 0 disables the double tap
 	function.
+
+	\remark Choosen value: 200ms : 0xA0
 	*/
-	comByte(0x22, true, 0);
+	comByte(0x22, true, 0xA0);
 
 	/**
 	\subsection adxl345_regs_23 Register 0x23—Window (Read/Write)
@@ -263,8 +269,10 @@ void Adxl345::begin()
 	latency time (determined by the latent register) during which a
 	second valid tap can begin. The scale factor is 1.25 ms/LSB. A
 	value of 0 disables the double tap function.
+
+	\remark Choosen value: 150ms : 0x78
 	*/
-	comByte(0x23, true, 0);
+	comByte(0x23, true, 0x78);
 
 	/**
 	\subsection adxl345_regs_2A Register 0x2A—TAP_AXES (Read/Write)
@@ -276,9 +284,9 @@ void Adxl345::begin()
 	<tr><td> D5		<td> 0						<td> 0
 	<tr><td> D4		<td> 0						<td> 0
 	<tr><td> D3		<td> Suppress				<td> 0
-	<tr><td> D2		<td> TAP_X enable			<td> 0
-	<tr><td> D1		<td> TAP_Y enable			<td> 0
-	<tr><td> D0 	<td> TAP_Z enable			<td> 0
+	<tr><td> D2		<td> TAP_X enable			<td> 1
+	<tr><td> D1		<td> TAP_Y enable			<td> 1
+	<tr><td> D0 	<td> TAP_Z enable			<td> 1
 	</table>
 
 	\paragraph adxl345_regs_2A_p1 Suppress Bit
@@ -294,7 +302,7 @@ void Adxl345::begin()
 	A setting of 0 excludes the selected axis from participation in
 	tap detection.
 	*/
-	comByte(0x2A, true, (0 << 3) + (0 << 2) + (0 << 1) + (0 << 0));
+	comByte(0x2A, true, (1 << 3) + (1 << 2) + (1 << 1) + (1 << 0));
 
 
 
@@ -450,8 +458,8 @@ void Adxl345::begin()
 	<table>
 	<tr><th> Bits	<th> Function			<th> Choosen value
 	<tr><td> D7		<td> DATA_READY			<td> 0
-	<tr><td> D6		<td> SINGLE_TAP			<td> 0
-	<tr><td> D5		<td> DOUBLE_TAP			<td> 0
+	<tr><td> D6		<td> SINGLE_TAP			<td> 1
+	<tr><td> D5		<td> DOUBLE_TAP			<td> 1
 	<tr><td> D4		<td> Activity			<td> 0
 	<tr><td> D3		<td> Inactivity			<td> 0
 	<tr><td> D2		<td> FREE_FALL			<td> 0
@@ -466,7 +474,7 @@ void Adxl345::begin()
 	the functions are always enabled. It is recommended that interrupts
 	be configured before enabling their outputs.
 	*/
-	comByte(0x2E, true, (0 << 7) + (0 << 6) + (0 << 5) + (0 << 4) + (0 << 3) + (0 << 2) + (0 << 1) + (0 << 0));
+	comByte(0x2E, true, (0 << 7) + (1 << 6) + (1 << 5) + (0 << 4) + (0 << 3) + (0 << 2) + (0 << 1) + (0 << 0));
 
 
 
@@ -700,7 +708,6 @@ void Adxl345::begin()
 void Adxl345::com(uint8_t addr, bool setWrite, uint8_t nbData)
 {
 	uint8_t firstByte = 0;
-	volatile uint8_t dataFirst;
 
 	firstByte = ((setWrite ? 0 : 1) << 7) + ((nbData > 1 ? 1 : 0) << 6) + (0x3F & addr);
 
@@ -719,7 +726,7 @@ void Adxl345::com(uint8_t addr, bool setWrite, uint8_t nbData)
 
 		//Then, read back
 		if (i == 0)
-			dataFirst = spi_read(SPI1);
+			spi_read(SPI1);
 		else
 			bufferIn[i-1] = spi_read(SPI1);
 	}
@@ -764,12 +771,32 @@ Adxl345::data Adxl345::getData(void)
 	return valOut;
 }
 
-bool Adxl345::isTape()
+bool Adxl345::isTap()
 {
-
+	updateInterrupt();
+	bool val = isTapInt;
+	isTapInt = false;
+	return val;
 }
 
 bool Adxl345::isDoubleTap()
 {
+	updateInterrupt();
+	bool val = isDoubleTapInt;
+	isDoubleTapInt = false;
+	return val;
+}
 
+
+void Adxl345::updateInterrupt()
+{
+	if(gpio_get(GPIOA, GPIO2))
+	{
+		uint8_t retVal = comByte(0x30);
+		isDoubleTapInt = retVal & 0x30;
+		if(!isDoubleTapInt)
+			isTapInt = retVal & 0x40;
+		else
+			isTapInt = false;
+	}
 }
