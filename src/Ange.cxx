@@ -16,6 +16,8 @@ Adxl345 axcel;
 
 void demoColor(void);
 void demoColor2(bool resetMinuterie = false);
+void interaction(void);
+
 
 
 /**
@@ -173,9 +175,30 @@ int main(void)
 	delay(20);
 	axcel.begin();
 
+	uint8_t menu = 0;
+	bool changeMenu = false;
+
 	while(true)
 	{
-		demoColor2();
+		if(axcel.isDoubleTap())
+		{
+			menu++;
+			changeMenu = true;
+		}
+		if(menu == 0)
+		{
+			if(changeMenu)
+			{
+				ledCmd.setColor(0x00, 0x00, 0xFF);
+				delay(2000);
+				changeMenu=false;
+				demoColor2(true);
+			}
+			else
+				demoColor2();
+		}
+		else
+			menu = 0;
 	}
 
     return 0;
@@ -277,25 +300,6 @@ void demoColor2(bool resetMinuterie)
 		minuterieOK = true;
 	}
 
-
-	if ((millis() - measAxcel) > 10)
-	{
-		values = axcel.getData();
-		if (values.x > max.x)
-			max.x = values.x;
-		if (values.y > max.y)
-			max.y = values.y;
-		if (values.z > max.z)
-			max.z = values.z;
-
-		if(values.x < min.x)
-			min.x = values.x;
-		if(values.y < min.y)
-			min.y = values.y;
-		if (values.z < min.z)
-			min.z = values.z;
-		measAxcel = millis();
-	}
 	if (updateColor)
 	{
 		if (((millis() - minuterie) < (uint64_t)(30 * 60 * 1000)))
@@ -321,18 +325,6 @@ void demoColor2(bool resetMinuterie)
 		incColor++;
 		if (incColor >= (uint16_t)(6 *0xFF))
 			incColor = 0x00;
-
-		if(axcel.isDoubleTap())
-		{
-			incColor = 0x4AB;
-		}
-
-		if (axcel.isTap())
-		{
-			incColor = 0x00;
-
-		}
-
 
 		delayColor = millis();
 		updateColor = true;
@@ -361,4 +353,10 @@ void demoColor2(bool resetMinuterie)
 		delayBright = millis();
 		updateColor = true;
 	}
+}
+
+
+void interaction(void)
+{
+
 }

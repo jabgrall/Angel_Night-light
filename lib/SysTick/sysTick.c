@@ -16,15 +16,15 @@
  */
 static volatile uint64_t _millis = 0;
 //static volatile uint64_t _micros = 0;
-//static volatile uint64_t _thouthandMicros = 0;
+static volatile uint64_t _thousandMicros = 0;
 
 void systick_setup(void);
 
 uint64_t millis(void);
-//uint64_t micros(void);
+uint64_t micros(void);
 
 void delay(uint64_t duration);
-//void delayMicros(uint64_t duration);
+void delayMicros(uint64_t duration);
 
 //Implémentation des fonctions
 
@@ -39,7 +39,7 @@ void systick_setup(void) {
 	systick_set_clocksource(STK_CSR_CLKSOURCE_AHB);
 	// Clear the Current Value Register so that we start at 0
 	STK_CVR = 0;
-	// In order to trigger an interrupt every microsecond, we can set the reload
+	// In order to trigger an interrupt every millisecond, we can set the reload
 	// value to be the speed of the processor / 1000 - 1
 	systick_set_reload(rcc_ahb_frequency / 1000 - 1);
 	// Enable interrupts from the system tick clock
@@ -57,14 +57,14 @@ uint64_t millis(void) {
     return _millis;
 }
 
-///**
-// * \brief Renvoi une valeur en micro seconde depuis le lancement du programme
-// * @return Valeur retour. Est sujet à de l'overflow.
-// *
-// */
-//uint64_t micros(void) {
-//    return _micros;
-//}
+/**
+ * \brief Renvoi une valeur en micro seconde depuis le lancement du programme
+ * @return Valeur retour. Est sujet à de l'overflow.
+ *
+ */
+uint64_t micros(void) {
+    return _thousandMicros * 1000 + (STK_CVR & STK_CVR_CURRENT) / (rcc_ahb_frequency / 1000000   - 1);
+}
 
 
 // This is our interrupt handler for the systick reload interrupt.
@@ -78,13 +78,8 @@ uint64_t millis(void) {
  */
 void sys_tick_handler(void) {
     // Increment our monotonic clock
-	//_micros++;
-	//_thouthandMicros++;
-	//if(_thouthandMicros >= 1000)
-	//{
-		_millis++;
-	//	_thouthandMicros = 0;
-	//}
+	_thousandMicros++;
+	_millis++;
 }
 
 // Delay a given number of milliseconds in a blocking manner
@@ -93,17 +88,25 @@ void sys_tick_handler(void) {
  * @param duration (en milli seconde)
  */
 void delay(uint64_t duration) {
-    const uint64_t until = millis() + duration;
-    while (millis() < until);
+	const uint64_t init = millis();
+    const uint64_t until = init + duration;
+    if(until >= init)
+    	while (millis() < until);
+    else
+    	while (((millis() < until) && (millis() < init)) || (millis() >= init));
 }
 
-//// Delay a given number of microseconds in a blocking manner
-///**
-// * \brief Stop l'exécution du programme pendant un laps de temps définit par duration.
-// * @param duration (en micro seconde)
-// */
-//void delayMicros(uint64_t duration) {
-//    const uint64_t until = micros() + duration;
-//    while (micros() < until);
-//}
+// Delay a given number of microseconds in a blocking manner
+/**
+ * \brief Stop l'exécution du programme pendant un laps de temps définit par duration.
+ * @param duration (en micro seconde)
+ */
+void delayMicros(uint64_t duration) {
+	const uint64_t init = micros();
+    const uint64_t until = init + duration;
+    if(until >= init)
+    	while (micros() < until);
+    else
+    	while (((micros() < until) && (micros() < init)) || (micros() >= init));
+}
 

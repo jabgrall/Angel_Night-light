@@ -10,10 +10,10 @@
 
 extern "C" {
 	uint64_t millis(void);
-	//uint64_t micros(void);
+	uint64_t micros(void);
 	void systick_setup(void);
 	void delay(uint64_t duration);
-	//void delayMicros(uint64_t duration);
+	void delayMicros(uint64_t duration);
 }
 
 
