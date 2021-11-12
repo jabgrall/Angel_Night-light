@@ -101,6 +101,7 @@ public:
 	virtual ~Light(void);
 
 	void begin(void);
+	void end(void);
 	void setColor(uint16_t rouge, uint16_t vert, uint16_t bleu);
 	void setColorTwoAxes(uint16_t color, uint16_t brightness);
 
@@ -109,6 +110,7 @@ private:
 	const uint8_t colStep = 8; ///< Nombre de bits des informations de couleurs à fournir par l'utilisateur. Basée sur la définition "HTML" de la couleur (codée sur 8 bits).
 	const uint32_t initCol[3] = {0, 0, 0}; ///< Niveau de couleur définie à l'initialisation de l'objet.
 	static const uint16_t calibBase = 1024; ///< Définit la base du compteur du timer. Utilisé pour éffectuer la calibration des couleurs.
+	bool isActivated; ///< Permet d'indiquer si les leds ont ́eté initialisées ou pas.
 };
 
 #endif

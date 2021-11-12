@@ -28,6 +28,7 @@ Light::Light(pwmConfig *rouge, pwmConfig *bleu, pwmConfig *vert)
 	led[2] = bleu;
 	led[1] = vert;
 	led[0] = rouge;
+	isActivated = false;
 }
 
 /**
@@ -49,46 +50,50 @@ Light::~Light(void)
 
 void Light::begin(void)
 {
-
-	for(uint8_t i = 0; i < 3; i++)
+	if (!isActivated)
 	{
-		if (led[i] != nullptr)
+		for(uint8_t i = 0; i < 3; i++)
 		{
-			//Configuration des sorties
-			if (led[i]->outSig != nullptr)
+			if (led[i] != nullptr)
 			{
-				rcc_periph_clock_enable(led[i]->outSig->gpioRCC);
-
-				if (led[i]->outSig->useAFIO)
+				//Configuration des sorties
+				if (led[i]->outSig != nullptr)
 				{
-					rcc_periph_clock_enable(RCC_AFIO);
+					rcc_periph_clock_enable(led[i]->outSig->gpioRCC);
+
+					if (led[i]->outSig->useAFIO)
+					{
+						rcc_periph_clock_enable(RCC_AFIO);
+					}
+
+					gpio_set_mode(led[i]->outSig->port, led[i]->outSig->mode, led[i]->outSig->altFct, led[i]->outSig->pin);
 				}
 
-				gpio_set_mode(led[i]->outSig->port, led[i]->outSig->mode, led[i]->outSig->altFct, led[i]->outSig->pin);
-			}
-
-			//Configuration des timers
-			if (led[i]->timer != nullptr)
-			{
-				rcc_periph_clock_enable(led[i]->timer->timerRCC);
-				timer_set_mode(led[i]->timer->timer, led[i]->timer->clkDiv, led[i]->timer->centAlMode, led[i]->timer->dir);
-				timer_set_oc_mode(led[i]->timer->timer, led[i]->comp, led[i]->pwmType);
-				timer_enable_oc_output(led[i]->timer->timer, led[i]->comp);
-				if((led[i]->timer->timer == TIM1) or (led[i]->timer->timer == TIM8))
+				//Configuration des timers
+				if (led[i]->timer != nullptr)
 				{
-					timer_enable_break_main_output(led[i]->timer->timer);
+					rcc_periph_clock_enable(led[i]->timer->timerRCC);
+					timer_set_mode(led[i]->timer->timer, led[i]->timer->clkDiv, led[i]->timer->centAlMode, led[i]->timer->dir);
+					timer_set_oc_mode(led[i]->timer->timer, led[i]->comp, led[i]->pwmType);
+					timer_enable_oc_output(led[i]->timer->timer, led[i]->comp);
+					if((led[i]->timer->timer == TIM1) or (led[i]->timer->timer == TIM8))
+					{
+						timer_enable_break_main_output(led[i]->timer->timer);
+					}
+					timer_set_prescaler(led[i]->timer->timer, led[i]->timer->presc);
+					timer_set_oc_value(led[i]->timer->timer, led[i]->comp, initCol[i]);
+					timer_set_period(led[i]->timer->timer, calibBase);
 				}
-				timer_set_prescaler(led[i]->timer->timer, led[i]->timer->presc);
-				timer_set_oc_value(led[i]->timer->timer, led[i]->comp, initCol[i]);
-				timer_set_period(led[i]->timer->timer, calibBase);
 			}
 		}
-	}
 
-	//Lancement des timers
-	for (uint8_t i = 0; i < 3; i++)
-	{
-		timer_enable_counter(led[i]->timer->timer);
+		//Lancement des timers
+		for (uint8_t i = 0; i < 3; i++)
+		{
+			timer_enable_counter(led[i]->timer->timer);
+		}
+
+		isActivated = true;
 	}
 }
 
@@ -106,22 +111,30 @@ void Light::begin(void)
 void Light::setColor(uint16_t rouge, uint16_t vert, uint16_t bleu)
 {
 	uint32_t calVal;
-	if (rouge < (uint16_t)(1 << colStep))
+	if (!isActivated)
 	{
-		calVal = ((uint32_t)calibBase * rouge) >> colStep;
-		timer_set_oc_value(led[0]->timer->timer, led[0]->comp, calVal);
+		begin();
 	}
 
-	if (vert < (uint16_t)(1 << colStep))
+	if(isActivated)
 	{
-		calVal = ((uint32_t)calibBase * vert) >> colStep;
-		timer_set_oc_value(led[1]->timer->timer, led[1]->comp, calVal);
-	}
+		if (rouge < (uint16_t)(1 << colStep))
+		{
+			calVal = ((uint32_t)calibBase * rouge) >> colStep;
+			timer_set_oc_value(led[0]->timer->timer, led[0]->comp, calVal);
+		}
 
-	if (bleu < (uint16_t)(1 << colStep))
-	{
-		calVal = ((uint32_t)calibBase * bleu) >> colStep;
-		timer_set_oc_value(led[2]->timer->timer, led[2]->comp, calVal);
+		if (vert < (uint16_t)(1 << colStep))
+		{
+			calVal = ((uint32_t)calibBase * vert) >> colStep;
+			timer_set_oc_value(led[1]->timer->timer, led[1]->comp, calVal);
+		}
+
+		if (bleu < (uint16_t)(1 << colStep))
+		{
+			calVal = ((uint32_t)calibBase * bleu) >> colStep;
+			timer_set_oc_value(led[2]->timer->timer, led[2]->comp, calVal);
+		}
 	}
 }
 
@@ -129,77 +142,116 @@ void Light::setColorTwoAxes(uint16_t color, uint16_t brightness)
 {
 	uint16_t rouge = 0, vert = 0, bleu = 0;
 
-	//Mix 1 : Rouge stable, vert croissant, bleu nul
-	if(color < (uint16_t)(1 * 0xFF))
+	if (!isActivated)
 	{
-		rouge = 0xFF;
-		vert = (color - 0x00);
-		bleu = 0x00;
-	}
-	//Mix 2 : Rouge d�croissant, vert stable, bleu nul
-	else if (color < (uint16_t)(2 * 0xFF))
-	{
-		rouge = 0x00FF - (color - (uint16_t)(1 * 0xFF));
-		vert = 0xFF;
-		bleu = 0x00;
-	}
-	//Mix 3 : Rouge nul, vert stable, bleu croissant
-	else if (color < (uint16_t)(3 * 0xFF))
-	{
-		rouge = 0x00;
-		vert = 0xFF;
-		bleu = (color - (uint16_t)(2 * 0xFF));
-	}
-	//Mix 4 : Rouge nul, vert d�croissant, bleu stable
-	else if (color < (uint16_t)(4 * 0xFF))
-	{
-		rouge = 0x00;
-		vert = 0x00FF - (color - (uint16_t)(3 * 0xFF));
-		bleu = 0xFF;
-	}
-	//Mix 5 : Rouge croissant, vert nul, bleu stable
-	else if (color < (uint16_t)(5 * 0xFF))
-	{
-		rouge = (color - (uint16_t)(4 * 0xFF));
-		vert = 0x00;
-		bleu = 0xFF;
-	}
-	else if (color < (uint16_t)(6 * 0xFF))
-	//Mix 6 : Rouge stable, vert nul, bleu d�croissant
-	{
-		rouge = 0xFF;
-		vert = 0x00;
-		bleu = 0x00FF - (color - (uint16_t)(5 * 0xFF));
-	}
-	else
-	//Saturation
-	{
-		rouge = 0xFF;
-		vert = 0x00;
-		bleu = 0x01;
+		begin();
 	}
 
-	//Mise en place du niveau de blanc et de noir.
-	if(brightness < 0xFF)
+	if (isActivated)
 	{
-		//Noir
-		rouge = (rouge * brightness) / 0xFF;
-		vert = (vert * brightness) / 0xFF;
-		bleu = (bleu * brightness) / 0xFF;
-	}
-	else if (brightness <= (uint16_t)(2 * 0xFF))
-	{
-		//Blanc
-		rouge = ((0xFF - rouge) * (brightness - 0xFF)) / 0xFF + rouge;
-		vert = ((0xFF - vert) * (brightness - 0xFF)) / 0xFF + vert;
-		bleu = ((0xFF - bleu) * (brightness - 0xFF)) / 0xFF + bleu;
-	}
-	else
-	{
-		rouge = 0xFF;
-		vert = 0xFF;
-		bleu = 0xFF;
-	}
+		//Mix 1 : Rouge stable, vert croissant, bleu nul
+		if(color < (uint16_t)(1 * 0xFF))
+		{
+			rouge = 0xFF;
+			vert = (color - 0x00);
+			bleu = 0x00;
+		}
+		//Mix 2 : Rouge d�croissant, vert stable, bleu nul
+		else if (color < (uint16_t)(2 * 0xFF))
+		{
+			rouge = 0x00FF - (color - (uint16_t)(1 * 0xFF));
+			vert = 0xFF;
+			bleu = 0x00;
+		}
+		//Mix 3 : Rouge nul, vert stable, bleu croissant
+		else if (color < (uint16_t)(3 * 0xFF))
+		{
+			rouge = 0x00;
+			vert = 0xFF;
+			bleu = (color - (uint16_t)(2 * 0xFF));
+		}
+		//Mix 4 : Rouge nul, vert d�croissant, bleu stable
+		else if (color < (uint16_t)(4 * 0xFF))
+		{
+			rouge = 0x00;
+			vert = 0x00FF - (color - (uint16_t)(3 * 0xFF));
+			bleu = 0xFF;
+		}
+		//Mix 5 : Rouge croissant, vert nul, bleu stable
+		else if (color < (uint16_t)(5 * 0xFF))
+		{
+			rouge = (color - (uint16_t)(4 * 0xFF));
+			vert = 0x00;
+			bleu = 0xFF;
+		}
+		else if (color < (uint16_t)(6 * 0xFF))
+		//Mix 6 : Rouge stable, vert nul, bleu d�croissant
+		{
+			rouge = 0xFF;
+			vert = 0x00;
+			bleu = 0x00FF - (color - (uint16_t)(5 * 0xFF));
+		}
+		else
+		//Saturation
+		{
+			rouge = 0xFF;
+			vert = 0x00;
+			bleu = 0x01;
+		}
 
-	setColor(rouge, vert, bleu);
+		//Mise en place du niveau de blanc et de noir.
+		if(brightness < 0xFF)
+		{
+			//Noir
+			rouge = (rouge * brightness) / 0xFF;
+			vert = (vert * brightness) / 0xFF;
+			bleu = (bleu * brightness) / 0xFF;
+		}
+		else if (brightness <= (uint16_t)(2 * 0xFF))
+		{
+			//Blanc
+			rouge = ((0xFF - rouge) * (brightness - 0xFF)) / 0xFF + rouge;
+			vert = ((0xFF - vert) * (brightness - 0xFF)) / 0xFF + vert;
+			bleu = ((0xFF - bleu) * (brightness - 0xFF)) / 0xFF + bleu;
+		}
+		else
+		{
+			rouge = 0xFF;
+			vert = 0xFF;
+			bleu = 0xFF;
+		}
+
+		setColor(rouge, vert, bleu);
+	}
+}
+
+
+/**
+ * \brief Allows to disable the leds. Useful in order to keep some battery when the led are not used.
+ */
+
+void Light::end(void)
+{
+	if (isActivated)
+	{
+		isActivated = false;
+
+		//Arrêt des timers
+		for (uint8_t i = 0; i < 3; i++)
+		{
+			timer_disable_counter(led[i]->timer->timer);
+		}
+
+		for(uint8_t i = 0; i < 3; i++)
+		{
+			if (led[i] != nullptr)
+			{
+				//Configuration des sorties à l'état haute impédance
+				if (led[i]->outSig != nullptr)
+				{
+					gpio_set_mode(led[i]->outSig->port, GPIO_MODE_INPUT, GPIO_CNF_INPUT_FLOAT, led[i]->outSig->pin);
+				}
+			}
+		}
+	}
 }

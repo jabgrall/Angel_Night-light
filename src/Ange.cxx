@@ -58,7 +58,7 @@ void interaction(void);
 	Demo : automatiquement
 
 	[*] --> bleu
-	bleu --> Demo : 1 seconde
+	bleu --> Demo : 2 secondes
 	}
 
 	state "Intéraction" as inter {
@@ -79,7 +79,7 @@ void interaction(void);
 	choix : soit sur Z.
 
 	[*] --> rouge
-	rouge --> mem : 1 seconde
+	rouge --> mem : 2 secondes
 	mem --> choix : single tap
 	choix --> mem : single tap
 
@@ -99,7 +99,7 @@ void interaction(void);
 	off : lumière.
 
 	[*] --> vert
-	vert --> pulse : 1 seconde
+	vert --> pulse : 2 secondes
 	pulse --> off : aucun son
 	off -> pulse : présence de son
 	}
@@ -197,6 +197,15 @@ int main(void)
 			else
 				demoColor2();
 		}
+		else if (menu == 1)
+		{
+			if (changeMenu)
+			{
+				ledCmd.setColor(0xFF, 0x00, 0x00);
+				delay(2000);
+				changeMenu = false;
+			}
+		}
 		else
 			menu = 0;
 	}
@@ -285,9 +294,20 @@ void demoColor(void)
 	delay(50);
 }
 
+
+/**
+ * \brief Code de démo de couleur version 2
+ *
+ * Cette fonction permet de faire varier la couleur sur l'ensemble du spectre. Elle fait également varier l'intensité lumineuse avec une légère pulsation : donne l'impression d'une respiration régulière.
+ * Elle tient compte de la gestion temporelle et peut être appelée autant de fois que nécéssaire.
+ *
+ * \remark Les constantes définies dans la fonction permettent de configurer les niveaux d'intensitées lumineuses ainsi que les bases de temps.
+ *
+ * \warning La mise à 0 de l'intensité lumineuse est frappante et peut réveiller l'enfant.
+ */
+
 void demoColor2(bool resetMinuterie)
 {
-	static Adxl345::data values, max = {0, 0, 0}, min = {0, 0, 0};
 	const uint16_t brightHigh = 0x3F, brightLow = 0x10, inTime = 1700 / (brightHigh - brightLow), outTime = 4000 / (brightHigh - brightLow);
 	static uint16_t incColor = 0x00, incBright = brightHigh, time = outTime;
 	static bool upBright = false, updateColor = true, minuterieOK = true;
@@ -315,6 +335,7 @@ void demoColor2(bool resetMinuterie)
 			ledCmd.setColor(0x00, 0x00, 0x00);
 			updateColor = false;
 			minuterieOK = false;
+			ledCmd.end();
 		}
 
 	}
@@ -355,8 +376,28 @@ void demoColor2(bool resetMinuterie)
 	}
 }
 
+/**
+ * \brief Display color according to position of the accelerometer.
+ */
 
-void interaction(void)
+void interaction(bool firstCall)
 {
+	const uint64_t waitTime = 10;
+	static uint16_t savedColor = 0x00, savedBright = 0x00;
+	static uint64_t delayMeasure = millis(), delay;
+	Adxl345::data axcelData;
+	static bool isDisplay = true;
 
+	if (firstCall)
+	{
+		ledCmd.setColorTwoAxes(savedColor, savedBright);
+		isDisplay = true;
+	}
+
+	if ((millis() > delay + waitTime) && !isDisplay)
+	{
+		//Measure Acceleration
+		axcelData = axcel.getData();
+		calc
+	}
 }
