@@ -17,5 +17,5 @@ set(FREERTOS_CONFIG_FILE_DIRECTORY "${PROJECT_SOURCE_DIR}/src" CACHE STRING "Abs
 set(FREERTOS_HEAP "4" CACHE STRING "FreeRTOS heap model number. 1 .. 5. Or absolute path to custom heap source file")
 set(FREERTOS_PORT "GCC_ARM_CM3" CACHE STRING "FreeRTOS port name")
 configure_file(${PROJECT_SOURCE_DIR}/src/FreeRTOSConfig.h.in ${PROJECT_SOURCE_DIR}/src/FreeRTOSConfig.h)
-add_subdirectory(FreeRTOS-Kernel)
+add_subdirectory(FreeRTOS/FreeRTOS-Kernel)
 set(ENV{EXTRA_LIBS} "$ENV{EXTRA_LIBS};freertos_kernel")

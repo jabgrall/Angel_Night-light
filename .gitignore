@@ -4,8 +4,10 @@
 /Doc/Soft/*
 /Doc/plantuml.jar
 /lib/libopencm3/*
-!/lib/libopencm3/CMakeists.txt
+!/lib/libopencm3/CMakeLists.txt
+!/lib/libopencm3/README.txt
 /build/*
 /compiler/*
 !/compiler/toolchain-arm-none-eabi.cmake
-
+/lib/FreeRTOS/*
+!/lib/FreeRTOS/README.txt
