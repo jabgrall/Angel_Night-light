@@ -1,5 +1,0 @@
-<map id="CRC Registers" name="CRC Registers">
-<area shape="rect" id="node1" href="$group__crc__defines.html" title="libopencm3 Defined Constants and Types for the STM32F1xx CRC Generator" alt="" coords="5,5,108,31"/>
-<area shape="rect" id="node3" title=" " alt="" coords="156,5,271,31"/>
-<area shape="rect" id="node2" href="$group__crc__cr__values.html" title=" " alt="" coords="319,5,440,31"/>
-</map>

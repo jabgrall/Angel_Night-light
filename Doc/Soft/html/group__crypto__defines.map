@@ -1,5 +1,0 @@
-<map id="Crypto_defines" name="Crypto_defines">
-<area shape="rect" id="node1" href="$group__crypto__registers__gen.html" title="Register access to the CRYP controller. (All chips)" alt="" coords="173,5,320,31"/>
-<area shape="rect" id="node2" href="$group__crypto__api__gen.html" title="API for the CRYP controller." alt="" coords="193,55,300,80"/>
-<area shape="rect" id="node3" title=" " alt="" coords="5,31,125,56"/>
-</map>

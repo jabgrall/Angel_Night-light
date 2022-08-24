@@ -1,6 +1,0 @@
-<map id="Light" name="Light">
-<area shape="rect" id="node1" title=" " alt="" coords="113,184,164,211"/>
-<area shape="rect" id="node2" href="$structLight_1_1pwmConfig.html" title="Élément structurel qui permet d&#39;associer un timer à un GPIO. Un élément permet de définir la so..." alt="" coords="78,95,199,121"/>
-<area shape="rect" id="node3" href="$structLight_1_1timerConfig.html" title="Configuration spécifique d&#39;une timer pour générer les PWMs des leds de couleurs." alt="" coords="5,5,128,32"/>
-<area shape="rect" id="node4" href="$structLight_1_1gpioConfig.html" title="Configuration des sorties qui seront assoiciées au timer pour gérer une PWM." alt="" coords="153,5,271,32"/>
-</map>

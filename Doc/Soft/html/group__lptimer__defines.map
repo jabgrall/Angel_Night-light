@@ -1,8 +1,0 @@
-<map id="Lptimer_defines" name="Lptimer_defines">
-<area shape="rect" id="node1" href="$group__lptim__cfgr.html" title=" " alt="" coords="180,5,376,45"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,134,132,159"/>
-<area shape="rect" id="node3" href="$group__lptim__isr.html" title=" " alt="" coords="201,69,355,109"/>
-<area shape="rect" id="node4" href="$group__lptim__cr.html" title=" " alt="" coords="181,134,375,159"/>
-<area shape="rect" id="node5" href="$group__lptim__ier.html" title=" " alt="" coords="203,184,353,224"/>
-<area shape="rect" id="node6" href="$group__lptim__icr.html" title=" " alt="" coords="203,248,353,288"/>
-</map>

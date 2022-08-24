@@ -1,0 +1,2 @@
+/home/jabgrall/Bureau/test_projet/compiler/bin/arm-none-eabi-gcc-ar qc libLIGHT.a CMakeFiles/LIGHT.dir/Light.cxx.obj
+/home/jabgrall/Bureau/test_projet/compiler/bin/arm-none-eabi-gcc-ranlib libLIGHT.a

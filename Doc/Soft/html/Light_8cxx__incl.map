@@ -1,7 +1,0 @@
-<map id="lib/Light/Light.cxx" name="lib/Light/Light.cxx">
-<area shape="rect" id="node1" title="Définition des fonctions de contr̂ole des PWM des leds." alt="" coords="233,5,370,32"/>
-<area shape="rect" id="node2" href="$Light_8h.html" title="Bibliothèque qui permet de contr̂oler les PWM pour afficher une couleur sur une led RGB." alt="" coords="268,80,335,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="5,155,184,181"/>
-<area shape="rect" id="node4" title=" " alt="" coords="208,155,395,181"/>
-<area shape="rect" id="node5" title=" " alt="" coords="419,155,613,181"/>
-</map>
