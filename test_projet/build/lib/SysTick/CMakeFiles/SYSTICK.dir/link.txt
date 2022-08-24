@@ -1,2 +1,0 @@
-/home/jabgrall/Bureau/test_projet/compiler/bin/arm-none-eabi-gcc-ar qc libSYSTICK.a CMakeFiles/SYSTICK.dir/sysTick.c.obj
-/home/jabgrall/Bureau/test_projet/compiler/bin/arm-none-eabi-gcc-ranlib libSYSTICK.a

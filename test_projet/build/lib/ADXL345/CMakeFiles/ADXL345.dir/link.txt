@@ -1,2 +1,0 @@
-/home/jabgrall/Bureau/test_projet/compiler/bin/arm-none-eabi-gcc-ar qc libADXL345.a CMakeFiles/ADXL345.dir/adxl345.cxx.obj
-/home/jabgrall/Bureau/test_projet/compiler/bin/arm-none-eabi-gcc-ranlib libADXL345.a

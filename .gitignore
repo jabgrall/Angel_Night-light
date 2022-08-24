@@ -1,1 +1,11 @@
 .pio
+/CAO/OpenSCAD/STL/*
+/CAO/FreeCAD/STL/*
+/Doc/Soft/*
+/Doc/plantuml.jar
+/lib/libopencm3/*
+!/lib/libopencm3/CMakeists.txt
+/build/*
+/compiler/*
+!/compiler/toolchain-arm-none-eabi.cmake
+

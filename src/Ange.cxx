@@ -115,7 +115,7 @@ int main(void)
 {
 
 	//Initialise l'horloge système
-	rcc_clock_setup_in_hsi_out_64mhz();
+	rcc_clock_setup_pll(&rcc_hsi_configs[RCC_CLOCK_HSI_64MHZ]);
 
 	//Configuration du module de contrôle des leds.
 

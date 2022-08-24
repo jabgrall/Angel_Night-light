@@ -1,3 +1,0 @@
-file(REMOVE_RECURSE
-  "libADXL345.a"
-)
