@@ -1,0 +1,23 @@
+%TF.GenerationSoftware,KiCad,Pcbnew,6.0.7-f9a2dced07~116~ubuntu22.04.1*%
+%TF.CreationDate,2022-08-25T07:51:39+02:00*%
+%TF.ProjectId,PCB-Ange,5043422d-416e-4676-952e-6b696361645f,rev?*%
+%TF.SameCoordinates,Original*%
+%TF.FileFunction,NonPlated,1,2,NPTH,Drill*%
+%TF.FilePolarity,Positive*%
+%FSLAX46Y46*%
+G04 Gerber Fmt 4.6, Leading zero omitted, Abs format (unit mm)*
+G04 Created by KiCad (PCBNEW 6.0.7-f9a2dced07~116~ubuntu22.04.1) date 2022-08-25 07:51:39*
+%MOMM*%
+%LPD*%
+G01*
+G04 APERTURE LIST*
+%TA.AperFunction,ComponentDrill*%
+%ADD10C,0.800000*%
+%TD*%
+G04 APERTURE END LIST*
+D10*
+%TO.C,SW1*%
+X114706600Y-107467600D03*
+%TO.C,SW2*%
+X115826000Y-126670000D03*
+M02*
