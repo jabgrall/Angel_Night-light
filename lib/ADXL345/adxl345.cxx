@@ -8,6 +8,8 @@
 #include <libopencm3/stm32/rcc.h>
 #include <libopencm3/stm32/gpio.h>
 #include <libopencm3/stm32/spi.h>
+#include <libopencm3/cm3/nvic.h>
+#include <libopencm3/stm32/exti.h>
 
 Adxl345::Adxl345(void)
 {
@@ -703,6 +705,15 @@ void Adxl345::begin()
 	in the FIFO section. Other bits, and the corresponding interrupts,
 	are cleared by reading the INT_SOURCE register.
 	*/
+
+	/* Enable EXTI0 interrupt. */
+	nvic_enable_irq(NVIC_EXTI0_IRQ);
+
+	/* Configure the EXTI subsystem. */
+	exti_select_source(EXTI1, GPIOA);
+	exti_direction = FALLING;
+	exti_set_trigger(EXTI1, EXTI_TRIGGER_RISING);
+	exti_enable_request(EXTI1);
 }
 
 void Adxl345::com(uint8_t addr, bool setWrite, uint8_t nbData)
