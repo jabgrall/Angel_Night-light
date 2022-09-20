@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.3)
 
-set(CMAKE_VERBOSE_MAKEFILE ON)
+set(CMAKE_VERBOSE_MAKEFILE OFF)
 
 set(CMAKE_BUILD_TYPE "Debug" CACHE INTERNAL "Choose the type of build, options are: Debug Release")
 set(CMAKE_TOOLCHAIN_FILE "${CMAKE_CURRENT_SOURCE_DIR}/compiler/toolchain-arm-none-eabi.cmake" CACHE INTERNAL "Path to the cmake file of the compiler.")

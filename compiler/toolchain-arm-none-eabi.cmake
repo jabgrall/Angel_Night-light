@@ -53,8 +53,8 @@ set(CMAKE_EXE_LINKER_FLAGS "-Wl,--gc-sections -nostartfiles --static --specs=nan
 # Options for DEBUG build
 # -Og   Enables optimizations that do not interfere with debugging.
 # -g    Produce debugging information in the operating system’s native format.
-set(CMAKE_C_FLAGS_DEBUG "-Og -g2 -ggdb2" CACHE INTERNAL "C Compiler options for debug build type")
-set(CMAKE_CXX_FLAGS_DEBUG "-Og -g2 -ggdb2" CACHE INTERNAL "C++ Compiler options for debug build type")
+set(CMAKE_C_FLAGS_DEBUG " -Og -g2 -ggdb2" CACHE INTERNAL "C Compiler options for debug build type")
+set(CMAKE_CXX_FLAGS_DEBUG " -Og -g2 -ggdb2" CACHE INTERNAL "C++ Compiler options for debug build type")
 set(CMAKE_ASM_FLAGS_DEBUG "-g" CACHE INTERNAL "ASM Compiler options for debug build type")
 set(CMAKE_EXE_LINKER_FLAGS_DEBUG "" CACHE INTERNAL "Linker options for debug build type")
 

@@ -11,3 +11,4 @@
 !/compiler/toolchain-arm-none-eabi.cmake
 /lib/FreeRTOS/*
 !/lib/FreeRTOS/README.txt
+/_build/

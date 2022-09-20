@@ -5,19 +5,27 @@
 
 
 #include "Light.h"
-#include "sysTick.h"
 #include "adxl345.h"
+#include "FreeRTOS.h"
+#include "task.h"
+#include "queue.h"
+#include "timers.h"
 
 Light::gpioConfig outRouge, outBleu, outVert;
 Light::timerConfig timerOne;
 Light::pwmConfig pwmRouge, pwmBleu, pwmVert;
 Light ledCmd(&pwmRouge, &pwmBleu, &pwmVert);
 Adxl345 axcel;
+TaskHandle_t demoTask, colorChTask, minuterieTask;
 
 void demoColor(void);
-void demoColor2(bool resetMinuterie = false);
-void interaction(void);
+void demoColor2(void* param);
+void interaction(void* param);
+void minuterie(void* param);
+void menuTask(void* param);
 
+
+uint16_t lastColorSaved=0, lastBrightSaved=0;
 
 
 /**
@@ -111,11 +119,39 @@ void interaction(void);
  *
  */
 
+
+
+
+
 int main(void)
 {
 
 	//Initialise l'horloge système
 	rcc_clock_setup_pll(&rcc_hsi_configs[RCC_CLOCK_HSI_64MHZ]);
+
+	xTaskCreate(menuTask, "Menu", configMINIMAL_STACK_SIZE, NULL, 2, NULL);
+
+	vTaskStartScheduler();
+
+	while(true)
+	{
+
+	}
+
+	return 0;
+}
+
+
+/**
+ * \brief Task du menu
+ */
+
+void menuTask(void* param)
+{
+	uint8_t menu = 0;
+	EventGroupHandle_t accelEvH;
+	EventBits_t accelEvB;
+	const TickType_t delay2000ms = pdMS_TO_TICKS(2000UL), delay20ms = pdMS_TO_TICKS(20UL);
 
 	//Configuration du module de contrôle des leds.
 
@@ -167,52 +203,52 @@ int main(void)
 	pwmVert.calib = 600;
 
 	//Initialise SysTick
-	systick_setup();
+	//systick_setup();
 
 	ledCmd.begin();
 
 	//Adxl345: typical startup time 1.4ms
-	delay(20);
+	vTaskDelay(delay20ms);
 	axcel.begin();
 
-	uint8_t menu = 0;
-	bool changeMenu = false;
+	accelEvH = axcel.getAccelEventGp();
 
+
+	//Create task for each menu element
+	xTaskCreate(demoColor2,"Change color", configMINIMAL_STACK_SIZE, NULL, 1, &demoTask);
+	vTaskSuspend(demoTask);
+	xTaskCreate(interaction,"Choose color", configMINIMAL_STACK_SIZE, NULL, 1, &colorChTask);
+	vTaskSuspend(colorChTask);
+
+	//Select initial Task
 	while(true)
 	{
-		if(axcel.isDoubleTap())
-		{
-			menu++;
-			changeMenu = true;
-		}
 		if(menu == 0)
 		{
-			if(changeMenu)
-			{
-				ledCmd.setColor(0x00, 0x00, 0xFF);
-				delay(2000);
-				changeMenu=false;
-				demoColor2(true);
-			}
-			else
-				demoColor2();
+			ledCmd.setColor(0x00, 0x00, 0xFF);
+			vTaskDelay(delay2000ms);
+			vTaskSuspend(colorChTask);
+			vTaskResume(demoTask);
+			//xTaskCreate(minuterie,"Start Minuterie", configMINIMAL_STACK_SIZE, demoTask, 1, &minuterieTask);
 		}
 		else if (menu == 1)
 		{
-			if (changeMenu)
-			{
-				ledCmd.setColor(0xFF, 0x00, 0x00);
-				delay(2000);
-				changeMenu = false;
-			}
+			ledCmd.setColor(0xFF, 0x00, 0x00);
+			vTaskDelay(delay2000ms);
+			vTaskSuspend(demoTask);
+			vTaskDelete(minuterieTask);
+			vTaskResume(colorChTask);
 		}
-		else
-			menu = 0;
+
+		accelEvB = xEventGroupWaitBits(accelEvH, 0x01, pdTRUE, pdFALSE, portMAX_DELAY);
+		if(accelEvB & 0x01)
+		{
+			menu++;
+			if(menu > 1)
+				menu = 0;
+		}
 	}
-
-    return 0;
 }
-
 
 /**
  * \brief Code de démo de couleur
@@ -221,77 +257,96 @@ int main(void)
  * Base de temps minmale : 3ms.
  */
 
-void demoColor(void)
+//void demoColor(void)
+//{
+//
+//	static uint8_t incRouge = 0xBF, incVert = 0x5F, incBleu = 0x5F;
+//	static bool upRouge = true, upVert = true, upBleu = false, updateColor = true;
+//	static uint64_t delayRouge = millis(), delayVert = millis(), delayBleu = millis();
+//
+//	if (updateColor)
+//	{
+//		ledCmd.setColor(incRouge, incVert, incBleu);
+//		updateColor = false;
+//
+//
+//	}
+//
+//	//Change color
+//	if ((millis() - delayRouge) > 3)
+//	{
+//		if (upRouge)
+//		{
+//			incRouge++;
+//			if (incRouge == 0xFF)
+//				upRouge = !upRouge;
+//		}
+//		else
+//		{
+//			incRouge--;
+//			if (incRouge == 0xBF)
+//				upRouge = !upRouge;
+//		}
+//		delayRouge = millis();
+//		updateColor = true;
+//	}
+//
+//	if ((millis() - delayVert) > 7)
+//	{
+//		if (upVert)
+//		{
+//			incVert++;
+//			if (incVert == 0x7F)
+//				upVert = !upVert;
+//		}
+//		else
+//		{
+//			incVert--;
+//			if (incVert == 0x00)
+//				upVert = !upVert;
+//		}
+//		delayVert = millis();
+//		updateColor = true;
+//	}
+//
+//	if ((millis() - delayBleu) > 5)
+//	{
+//		if (upBleu)
+//		{
+//			incBleu++;
+//			if (incBleu == 0x7F)
+//				upBleu = !upBleu;
+//		}
+//		else
+//		{
+//			incBleu--;
+//			if (incBleu == 0x00)
+//				upBleu = !upBleu;
+//		}
+//		delayBleu = millis();
+//		updateColor = true;
+//	}
+//
+//	delay(50);
+//}
+
+
+/**
+ * \brief Used to stop the demoColor2 Task
+ */
+
+void minuterie(void* param)
 {
+	TaskHandle_t demoTaskTemp = (TaskHandle_t) param;
+	const TickType_t delayToStop = pdMS_TO_TICKS(30UL * 60UL * 1000UL);
 
-	static uint8_t incRouge = 0xBF, incVert = 0x5F, incBleu = 0x5F;
-	static bool upRouge = true, upVert = true, upBleu = false, updateColor = true;
-	static uint64_t delayRouge = millis(), delayVert = millis(), delayBleu = millis();
+	vTaskDelay(delayToStop);
 
-	if (updateColor)
-	{
-		ledCmd.setColor(incRouge, incVert, incBleu);
-		updateColor = false;
+	vTaskSuspend(demoTaskTemp);
+	ledCmd.setColor(0x00, 0x00, 0x00);
+	ledCmd.end();
 
-
-	}
-
-	//Change color
-	if ((millis() - delayRouge) > 3)
-	{
-		if (upRouge)
-		{
-			incRouge++;
-			if (incRouge == 0xFF)
-				upRouge = !upRouge;
-		}
-		else
-		{
-			incRouge--;
-			if (incRouge == 0xBF)
-				upRouge = !upRouge;
-		}
-		delayRouge = millis();
-		updateColor = true;
-	}
-
-	if ((millis() - delayVert) > 7)
-	{
-		if (upVert)
-		{
-			incVert++;
-			if (incVert == 0x7F)
-				upVert = !upVert;
-		}
-		else
-		{
-			incVert--;
-			if (incVert == 0x00)
-				upVert = !upVert;
-		}
-		delayVert = millis();
-		updateColor = true;
-	}
-
-	if ((millis() - delayBleu) > 5)
-	{
-		if (upBleu)
-		{
-			incBleu++;
-			if (incBleu == 0x7F)
-				upBleu = !upBleu;
-		}
-		else
-		{
-			incBleu--;
-			if (incBleu == 0x00)
-				upBleu = !upBleu;
-		}
-		delayBleu = millis();
-		updateColor = true;
-	}
-
-	delay(50);
+	vTaskDelete(NULL);
 }
 
 
@@ -306,73 +361,63 @@ void demoColor(void)
  * \warning La mise à 0 de l'intensité lumineuse est frappante et peut réveiller l'enfant.
  */
 
-void demoColor2(bool resetMinuterie)
+void demoColor2(void* param)
 {
 	const uint16_t brightHigh = 0x3F, brightLow = 0x10, inTime = 1700 / (brightHigh - brightLow), outTime = 4000 / (brightHigh - brightLow);
-	static uint16_t incColor = 0x00, incBright = brightHigh, time = outTime;
-	static bool upBright = false, updateColor = true, minuterieOK = true;
-	static uint64_t delayColor = millis(), delayBright = millis(), minuterie = millis(), measAxcel = millis();
+	uint16_t incColor = 0x00, incBright = brightHigh, time = outTime;
+	static bool upBright = false, updateColor = true;
+	static uint16_t delayColor = 0, delayBright = 0;
+	const uint8_t loopTime = 5;
+	const TickType_t delay1ms = pdMS_TO_TICKS(5);
 
-	if(resetMinuterie)
-	{
-		minuterie = millis();
-		updateColor = true;
-		minuterieOK = true;
-	}
 
-	if (updateColor)
+
+	while(true)
 	{
-		if (((millis() - minuterie) < (uint64_t)(30 * 60 * 1000)))
+		if (updateColor)
 		{
-			if (minuterieOK)
-			{
-				ledCmd.setColorTwoAxes(incColor, incBright);
-				updateColor = false;
-			}
-		}
-		else
-		{
-			ledCmd.setColor(0x00, 0x00, 0x00);
+			ledCmd.setColorTwoAxes(incColor, incBright);
 			updateColor = false;
-			minuterieOK = false;
-			ledCmd.end();
 		}
 
-	}
+		vTaskDelay(delay1ms);
 
-	//Change color
-	if ((millis() - delayColor) > 40)
-	{
-		incColor++;
-		if (incColor >= (uint16_t)(6 *0xFF))
-			incColor = 0x00;
-
-		delayColor = millis();
-		updateColor = true;
-	}
-
-	if ((millis() - delayBright) > time)
-	{
-		if (upBright)
+		//Change color
+		delayColor += loopTime;
+		if (delayColor > 40)
 		{
-			incBright++;
-			if (incBright == brightHigh)
-			{
-				upBright = !upBright;
-				time = outTime;
-			}
+			incColor++;
+			if (incColor >= (uint16_t)(6 *0xFF))
+				incColor = 0x00;
+
+			delayColor = 0;
+			updateColor = true;
 		}
-		else
+
+		delayBright += loopTime;
+		if (delayBright > time)
 		{
-			incBright--;
-			if (incBright == brightLow)
+			if (upBright)
 			{
-				upBright = !upBright;
-				time = inTime;
+				incBright++;
+				if (incBright == brightHigh)
+				{
+					upBright = !upBright;
+					time = outTime;
+				}
 			}
+			else
+			{
+				incBright--;
+				if (incBright == brightLow)
+				{
+					upBright = !upBright;
+					time = inTime;
+				}
+			}
+			delayBright = 0;
+			updateColor = true;
 		}
-		delayBright = millis();
-		updateColor = true;
 	}
 }
 
@@ -380,24 +425,152 @@ void demoColor2(bool resetMinuterie)
  * \brief Display color according to position of the accelerometer.
  */
 
-void interaction(bool firstCall)
+void interaction(void* param)
 {
-	const uint64_t waitTime = 10;
-	static uint16_t savedColor = 0x00, savedBright = 0x00;
-	static uint64_t delayMeasure = millis(), delay;
 	Adxl345::data axcelData;
-	static bool isDisplay = true;
+	const uint8_t maxData=10, gVal = 128;
+	uint8_t saveIndex=0;
+	uint16_t dataColor[maxData], dataBright[maxData];
+	EventGroupHandle_t singleTapEv = axcel.getAccelEventGp();
+	bool display=true;
+	const TickType_t delay100ms = pdMS_TO_TICKS(100);
+	uint32_t moy = 0;
 
-	if (firstCall)
+	for(uint8_t i=0; i < maxData; i++)
 	{
-		ledCmd.setColorTwoAxes(savedColor, savedBright);
-		isDisplay = true;
+		dataColor[i] = 0;
+		dataBright[i] = 0;
 	}
 
-	if ((millis() > delay + waitTime) && !isDisplay)
+	while(true)
 	{
-		//Measure Acceleration
-		axcelData = axcel.getData();
-		//calc
+		EventBits_t singleTap = xEventGroupClearBits(singleTapEv, 0x02);
+
+		if(singleTap & 0x02)
+			display = !display;
+
+		if(display)
+			ledCmd.setColorTwoAxes(lastColorSaved, lastBrightSaved);
+		else
+		{
+			axcelData = axcel.getData();
+
+			//Compute Color and save it
+			int16_t x = axcelData.x, absX = 0;
+			int16_t y = axcelData.y, absY = 0;
+
+			if(x < 0)
+				absX = -x;
+			else
+				absX = x;
+
+			if(y < 0)
+				absY = -y;
+			else
+				absY = y;
+
+			if((absX >= absY) && (x > 0) && (y >=0))
+			{
+				dataColor[saveIndex] = (uint16_t)(((int32_t)191 * (int32_t) y) / x);
+			}
+			else if((absY >= absX) && (y > 0))
+			{
+				dataColor[saveIndex] = (uint16_t)(383 - ((int32_t)191 * (int32_t) x) / y);
+			}
+			else if((absY >= absX) && (y > 0))
+			{
+				dataColor[saveIndex] = (uint16_t)(765 + ((int32_t)191 * (int32_t) y) / x);
+			}
+			else if((absX >= absY) && (x < 0))
+			{
+				dataColor[saveIndex] = (uint16_t)(1148 - ((int32_t)191 * (int32_t) x) / y);
+			}
+			else
+			{
+				dataColor[saveIndex] = (uint16_t)(1530 + ((int32_t)191 * (int32_t) y) / x);
+			}
+
+
+			moy = 0;
+			for(uint8_t i =0; i<maxData; i++)
+			{
+				moy += dataColor[i];
+			}
+
+			lastColorSaved = (uint16_t)(moy / maxData);
+
+			//Compute Brightness and save it
+			int16_t z = axcelData.z;
+			int32_t tempVal;
+
+			tempVal = ((int32_t)z * 0xFF) / gVal + 0xFF;
+
+			if(tempVal > (2 * 0xFF+1))
+				tempVal = 2 * 0xFF;
+			else if(tempVal < 0)
+				tempVal = 0;
+
+			dataBright[saveIndex] = (uint16_t) tempVal;
+
+			moy = 0;
+			for(uint8_t i =0; i<maxData; i++)
+			{
+				moy += dataBright[i];
+			}
+
+			lastBrightSaved = (uint16_t)(moy / maxData);
+
+			saveIndex++;
+
+			vTaskDelay(delay100ms);
+		}
 	}
+}
+
+
+void vApplicationMallocFailedHook( void )
+{
+	/* Called if a call to pvPortMalloc() fails because there is insufficient
+	free memory available in the FreeRTOS heap.  pvPortMalloc() is called
+	internally by FreeRTOS API functions that create tasks, queues, software
+	timers, and semaphores.  The size of the FreeRTOS heap is set by the
+	configTOTAL_HEAP_SIZE configuration constant in FreeRTOSConfig.h. */
+	for( ;; );
+}
+/*-----------------------------------------------------------*/
+
+void vApplicationStackOverflowHook( TaskHandle_t pxTask, char *pcTaskName )
+{
+	( void ) pcTaskName;
+	( void ) pxTask;
+
+	/* Run time stack overflow checking is performed if
+	configconfigCHECK_FOR_STACK_OVERFLOW is defined to 1 or 2.  This hook
+	function is called if a stack overflow is detected. */
+	for( ;; );
+}
+/*-----------------------------------------------------------*/
+
+
+void vApplicationIdleHook( void )
+{
+volatile size_t xFreeStackSpace;
+
+	/* This function is called on each cycle of the idle task.  In this case it
+	does nothing useful, other than report the amout of FreeRTOS heap that
+	remains unallocated. */
+	xFreeStackSpace = xPortGetFreeHeapSize();
+
+	if( xFreeStackSpace > 100 )
+	{
+		/* By now, the kernel has allocated everything it is going to, so
+		if there is a lot of heap remaining unallocated then
+		the value of configTOTAL_HEAP_SIZE in FreeRTOSConfig.h can be
+		reduced accordingly. */
+	}
+}
+
+void vApplicationTickHook( void )
+{
+
 }

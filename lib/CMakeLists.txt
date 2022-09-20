@@ -7,8 +7,8 @@ add_subdirectory(Light)
 set(ENV{EXTRA_LIBS} "$ENV{EXTRA_LIBS};LIGHT")
 
 #Add SYSTICK Library
-add_subdirectory(SysTick)
-set(ENV{EXTRA_LIBS} "$ENV{EXTRA_LIBS};SYSTICK")
+#add_subdirectory(SysTick)
+#set(ENV{EXTRA_LIBS} "$ENV{EXTRA_LIBS};SYSTICK")
 
 #Add FreeRTOS Kernel Library
 #git clone https://github.com/FreeRTOS/FreeRTOS-Kernel.git

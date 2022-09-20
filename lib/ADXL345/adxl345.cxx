@@ -10,6 +10,9 @@
 #include <libopencm3/stm32/spi.h>
 #include <libopencm3/cm3/nvic.h>
 #include <libopencm3/stm32/exti.h>
+#include <semphr.h>
+
+static SemaphoreHandle_t ext02Semphr = NULL;
 
 Adxl345::Adxl345(void)
 {
@@ -18,6 +21,7 @@ Adxl345::Adxl345(void)
 		bufferOut[i] = 0;
 		bufferIn[i] = 0;
 	}
+
 }
 
 Adxl345::~Adxl345(void)
@@ -706,14 +710,30 @@ void Adxl345::begin()
 	are cleared by reading the INT_SOURCE register.
 	*/
 
+	/**
+	 * \section Events from the accelerometer
+	 *
+	 * \li 0x01: Double tap event.
+	 * \li 0x02: Single Tap event.
+	 */
+
 	/* Enable EXTI0 interrupt. */
-	nvic_enable_irq(NVIC_EXTI0_IRQ);
+	nvic_set_priority(NVIC_EXTI2_IRQ, configMAX_SYSCALL_INTERRUPT_PRIORITY);
+	nvic_enable_irq(NVIC_EXTI2_IRQ);
 
 	/* Configure the EXTI subsystem. */
-	exti_select_source(EXTI1, GPIOA);
-	exti_direction = FALLING;
-	exti_set_trigger(EXTI1, EXTI_TRIGGER_RISING);
-	exti_enable_request(EXTI1);
+	exti_select_source(EXTI2, GPIOA);
+	exti_set_trigger(EXTI2, EXTI_TRIGGER_RISING);
+	exti_enable_request(EXTI2);
+
+	//Config Semaphores and events
+	ext02Semphr = xSemaphoreCreateBinary();
+	accelEventGp = xEventGroupCreate();
+
+	/*Task creation*/
+	TaskData.object = this;
+	xTaskCreate(Adxl345::interruptManagment_Task, "Task sending events from the accelerometer.", 100, &TaskData, 3, NULL);
+
 }
 
 void Adxl345::com(uint8_t addr, bool setWrite, uint8_t nbData)
@@ -810,4 +830,73 @@ void Adxl345::updateInterrupt()
 		else
 			isTapInt = false;
 	}
+}
+
+/**
+ * \brief Interruption fonction. Activate semaphore.
+ *
+ */
+
+void exti2_isr(void)
+{
+	exti_reset_request(EXTI2);
+
+	BaseType_t awakeTask = pdFALSE;
+
+	xSemaphoreGiveFromISR(ext02Semphr, &awakeTask);
+	portYIELD_FROM_ISR(awakeTask);
+}
+
+/**
+ * \brief Get Semaphore handle for the accelerometer event.
+ */
+
+EventGroupHandle_t Adxl345::getAccelEventGp()
+{
+	return accelEventGp;
+}
+
+
+/**
+ *
+ * \brief Static function that allows link between C type Task function calling system and the C++ functions linked to an object.
+ */
+void Adxl345::interruptManagment_Task(void* parameters)
+{
+	Adxl345::TaskDataDef* getObject = static_cast<Adxl345::TaskDataDef *>(parameters);
+	getObject->object->interruptManagment(parameters);
+}
+
+/**
+ *
+ * \brief Function analysing interrupt from Adxl345 in order to send according event.
+ */
+void Adxl345::interruptManagment(void* parameters)
+{
+	volatile uint8_t retVal = 0;
+	while(true)
+	{
+		xSemaphoreTake(ext02Semphr, portMAX_DELAY);
+
+
+		while(gpio_get(GPIOA, GPIO2))
+		{
+			retVal = comByte(0x30);
+			retVal = comByte(0x30);
+		}
+		if(retVal & 0x30)
+		{
+			//Double Tap event
+			xEventGroupSetBits(accelEventGp, 0x01);
+		}
+		else
+		{
+			if(retVal & 0x40)
+			{
+				//Single Tap event
+				xEventGroupSetBits(accelEventGp, 0x02);
+			}
+		}
+	}
+	vTaskDelete(NULL);
 }
