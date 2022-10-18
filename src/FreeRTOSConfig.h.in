@@ -61,6 +61,8 @@
 #define configUSE_APPLICATION_TASK_TAG	0
 #define configUSE_COUNTING_SEMAPHORES	0
 #define configSUPPORT_DYNAMIC_ALLOCATION 1
+#define configUSE_TASK_NOTIFICATIONS	1
+#define configTASK_NOTIFICATION_ARRAY_ENTRIES 1
 
 /* Co-routine definitions. */
 #define configUSE_CO_ROUTINES 		0

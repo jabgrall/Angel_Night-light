@@ -278,7 +278,8 @@ void Adxl345::begin()
 
 	\remark Choosen value: 150ms : 0x78
 	*/
-	comByte(0x23, true, 0x78);
+	//comByte(0x23, true, 0x78);
+	comByte(0x23, true, 0xFF);
 
 	/**
 	\subsection adxl345_regs_2A Register 0x2A—TAP_AXES (Read/Write)
@@ -878,12 +879,7 @@ void Adxl345::interruptManagment(void* parameters)
 	{
 		xSemaphoreTake(ext02Semphr, portMAX_DELAY);
 
-
-		while(gpio_get(GPIOA, GPIO2))
-		{
-			retVal = comByte(0x30);
-			retVal = comByte(0x30);
-		}
+		retVal = comByte(0x30);
 		if(retVal & 0x30)
 		{
 			//Double Tap event

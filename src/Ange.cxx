@@ -10,13 +10,15 @@
 #include "task.h"
 #include "queue.h"
 #include "timers.h"
+#include "semphr.h"
 
 Light::gpioConfig outRouge, outBleu, outVert;
 Light::timerConfig timerOne;
 Light::pwmConfig pwmRouge, pwmBleu, pwmVert;
 Light ledCmd(&pwmRouge, &pwmBleu, &pwmVert);
 Adxl345 axcel;
-TaskHandle_t demoTask, colorChTask, minuterieTask;
+TaskHandle_t demoTask = NULL, colorChTask = NULL, minuterieTask = NULL;
+EventGroupHandle_t demoTaskSpd = NULL, colorChTaskSpd = NULL, minuterieTaskSpd = NULL;
 
 void demoColor(void);
 void demoColor2(void* param);
@@ -213,31 +215,35 @@ void menuTask(void* param)
 
 	accelEvH = axcel.getAccelEventGp();
 
-
 	//Create task for each menu element
-	xTaskCreate(demoColor2,"Change color", configMINIMAL_STACK_SIZE, NULL, 1, &demoTask);
-	vTaskSuspend(demoTask);
-	xTaskCreate(interaction,"Choose color", configMINIMAL_STACK_SIZE, NULL, 1, &colorChTask);
-	vTaskSuspend(colorChTask);
+	configASSERT(xTaskCreate(demoColor2,"Change color", configMINIMAL_STACK_SIZE, NULL, 1, &demoTask));
+	configASSERT(xTaskCreate(interaction,"Choose color", configMINIMAL_STACK_SIZE, NULL, 1, &colorChTask));
+	configASSERT(xTaskCreate(minuterie,"Start Minuterie", configMINIMAL_STACK_SIZE, demoTask, 1, &minuterieTask));
+
+	//Create Suspension semaphores
+	demoTaskSpd = xEventGroupCreate();
+	colorChTaskSpd = xEventGroupCreate();
+	minuterieTaskSpd = xEventGroupCreate();
+
 
 	//Select initial Task
 	while(true)
 	{
 		if(menu == 0)
 		{
+			xEventGroupClearBits(colorChTaskSpd, 0x01);
 			ledCmd.setColor(0x00, 0x00, 0xFF);
 			vTaskDelay(delay2000ms);
-			vTaskSuspend(colorChTask);
-			vTaskResume(demoTask);
-			//xTaskCreate(minuterie,"Start Minuterie", configMINIMAL_STACK_SIZE, demoTask, 1, &minuterieTask);
+			xEventGroupSetBits(demoTaskSpd, 0x01);
+			xEventGroupSetBits(minuterieTaskSpd, 0x01);
 		}
 		else if (menu == 1)
 		{
+			xEventGroupClearBits(demoTaskSpd, 0x01);
+			xEventGroupClearBits(minuterieTaskSpd, 0x01);
 			ledCmd.setColor(0xFF, 0x00, 0x00);
 			vTaskDelay(delay2000ms);
-			vTaskSuspend(demoTask);
-			vTaskDelete(minuterieTask);
-			vTaskResume(colorChTask);
+			xEventGroupSetBits(colorChTaskSpd, 0x01);
 		}
 
 		accelEvB = xEventGroupWaitBits(accelEvH, 0x01, pdTRUE, pdFALSE, portMAX_DELAY);
@@ -338,15 +344,40 @@ void menuTask(void* param)
 void minuterie(void* param)
 {
 	TaskHandle_t demoTaskTemp = (TaskHandle_t) param;
-	const TickType_t delayToStop = pdMS_TO_TICKS(30UL * 60UL * 1000UL);
+	uint16_t delayToStop = 30, counting = 0;
+	const TickType_t delayChecking = pdMS_TO_TICKS(1000UL);
 
-	vTaskDelay(delayToStop);
+	//Set itself to suspension
+	xEventGroupClearBits(minuterieTaskSpd, 0x01);
 
-	vTaskSuspend(demoTaskTemp);
-	ledCmd.setColor(0x00, 0x00, 0x00);
-	ledCmd.end();
+	while(true)
+	{
+		//Check first if the task has to be suspended.
+		if((xEventGroupWaitBits(minuterieTaskSpd, 0x01, pdFALSE, pdFALSE, 0) & 0x01) == 0)
+		{
+			//Task has to be suspended
+			//Init first
+			counting = 0;
+			//Wait until end of suspension
+			xEventGroupWaitBits(minuterieTaskSpd, 0x01, pdFALSE, pdFALSE, portMAX_DELAY);
+		}
 
-	vTaskDelete(NULL);
+		//Else, waiting
+		vTaskDelay(delayChecking);
+
+		counting++;
+
+		if(counting >= delayToStop)
+		{
+			//Once delay is done, stop demoTaskTemp task
+			ulTaskNotifyValueClearIndexed(demoTaskTemp, 0, 0x01);
+			ledCmd.setColor(0x00, 0x00, 0x00);
+			ledCmd.end();
+
+			//Set itself to suspension
+			ulTaskNotifyValueClearIndexed(NULL, 0, 0x01);
+		}
+	}
 }
 
 
@@ -371,9 +402,23 @@ void demoColor2(void* param)
 	const TickType_t delay1ms = pdMS_TO_TICKS(5);
 
 
+	//Set itself to suspension
+	xEventGroupClearBits(demoTaskSpd, 0x01);
 
 	while(true)
 	{
+		//Check first if the task has to be suspended.
+		if((xEventGroupWaitBits(demoTaskSpd, 0x01, pdFALSE, pdFALSE, 0) & 0x01) == 0)
+		{
+			//Task has to be suspended
+			//Init first
+			incColor = 0x00;
+			incBright = brightHigh;
+
+			//Wait until end of suspension
+			xEventGroupWaitBits(demoTaskSpd, 0x01, pdFALSE, pdFALSE, portMAX_DELAY);
+		}
+
 		if (updateColor)
 		{
 			ledCmd.setColorTwoAxes(incColor, incBright);
@@ -428,13 +473,19 @@ void demoColor2(void* param)
 void interaction(void* param)
 {
 	Adxl345::data axcelData;
-	const uint8_t maxData=10, gVal = 128;
+	const uint8_t maxData=5, gVal = 128;
 	uint8_t saveIndex=0;
 	uint16_t dataColor[maxData], dataBright[maxData];
 	EventGroupHandle_t singleTapEv = axcel.getAccelEventGp();
 	bool display=true;
-	const TickType_t delay100ms = pdMS_TO_TICKS(100);
+	const TickType_t delay100ms = pdMS_TO_TICKS(10);
 	uint32_t moy = 0;
+
+	//Set itself to suspension
+	xEventGroupClearBits(colorChTaskSpd, 0x01);
+
+	//Clear Single tap Bits
+	xEventGroupClearBits(singleTapEv, 0x02);
 
 	for(uint8_t i=0; i < maxData; i++)
 	{
@@ -444,14 +495,32 @@ void interaction(void* param)
 
 	while(true)
 	{
+
+		//Check first if the task has to be suspended.
+		if((xEventGroupWaitBits(colorChTaskSpd, 0x01, pdFALSE, pdFALSE, 0) & 0x01) == 0)
+		{
+			//Task has to be suspended
+			//Init first
+			//In case previous state was suspension: restart
+
+			for(uint8_t i=0; i < maxData; i++)
+			{
+				dataColor[i] = 0;
+				dataBright[i] = 0;
+			}
+
+			//Wait until end of suspension
+			xEventGroupWaitBits(colorChTaskSpd, 0x01, pdFALSE, pdFALSE, portMAX_DELAY);
+		}
+
 		EventBits_t singleTap = xEventGroupClearBits(singleTapEv, 0x02);
 
 		if(singleTap & 0x02)
 			display = !display;
 
-		if(display)
-			ledCmd.setColorTwoAxes(lastColorSaved, lastBrightSaved);
-		else
+		ledCmd.setColorTwoAxes(lastColorSaved, lastBrightSaved);
+
+		if(!display)
 		{
 			axcelData = axcel.getData();
 
@@ -477,15 +546,15 @@ void interaction(void* param)
 			{
 				dataColor[saveIndex] = (uint16_t)(383 - ((int32_t)191 * (int32_t) x) / y);
 			}
-			else if((absY >= absX) && (y > 0))
+			else if((absX >= absY) && (x < 0))
 			{
 				dataColor[saveIndex] = (uint16_t)(765 + ((int32_t)191 * (int32_t) y) / x);
 			}
-			else if((absX >= absY) && (x < 0))
+			else if((absY >= absX) && (y < 0))
 			{
 				dataColor[saveIndex] = (uint16_t)(1148 - ((int32_t)191 * (int32_t) x) / y);
 			}
-			else
+			else if(x != 0)
 			{
 				dataColor[saveIndex] = (uint16_t)(1530 + ((int32_t)191 * (int32_t) y) / x);
 			}
@@ -500,10 +569,10 @@ void interaction(void* param)
 			lastColorSaved = (uint16_t)(moy / maxData);
 
 			//Compute Brightness and save it
-			int16_t z = axcelData.z;
+			int16_t z = -axcelData.z;
 			int32_t tempVal;
 
-			tempVal = ((int32_t)z * 0xFF) / gVal + 0xFF;
+			tempVal = ((int32_t)z * 0x3F) / gVal + 0x3F;
 
 			if(tempVal > (2 * 0xFF+1))
 				tempVal = 2 * 0xFF;
@@ -521,6 +590,8 @@ void interaction(void* param)
 			lastBrightSaved = (uint16_t)(moy / maxData);
 
 			saveIndex++;
+			if(saveIndex >= maxData)
+				saveIndex = 0;
 
 			vTaskDelay(delay100ms);
 		}
