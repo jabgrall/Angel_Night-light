@@ -479,7 +479,7 @@ void interaction(void* param)
 	EventGroupHandle_t singleTapEv = axcel.getAccelEventGp();
 	bool display=true;
 	const TickType_t delay100ms = pdMS_TO_TICKS(10);
-	uint32_t moy = 0;
+	int32_t moy = 0;
 
 	//Set itself to suspension
 	xEventGroupClearBits(colorChTaskSpd, 0x01);
@@ -584,7 +584,26 @@ void interaction(void* param)
 			moy = 0;
 			for(uint8_t i =0; i<maxData; i++)
 			{
-				moy += dataBright[i];
+				if(i > 0)
+				{
+					int32_t straight = dataBright[i] - dataBright[0];
+					if(straight < 0 )
+						straight = -(straight);
+
+					int32_t around = 2*0xFF - (straight);
+					if(around < 0)
+						around = -(around);
+
+					if(straight >= around)
+						moy += dataBright[i];
+					else
+					{
+						if (dataBright[i] > dataBright[0])
+
+					}
+				}
+				else
+					moy = dataBright[i];
 			}
 
 			lastBrightSaved = (uint16_t)(moy / maxData);
