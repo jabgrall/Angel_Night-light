@@ -586,7 +586,7 @@ void interaction(void* param)
 			{
 				if(i > 0)
 				{
-					int32_t straight = dataBright[i] - dataBright[0];
+					int32_t straight = (int32_t) dataBright[i] - dataBright[0];
 					if(straight < 0 )
 						straight = -(straight);
 
@@ -594,19 +594,26 @@ void interaction(void* param)
 					if(around < 0)
 						around = -(around);
 
-					if(straight >= around)
+					if(straight <= around)
 						moy += dataBright[i];
 					else
 					{
 						if (dataBright[i] > dataBright[0])
-
+							moy += (int32_t) dataBright[i] - 2 * 0xFF;
+						else
+							moy += (int32_t) dataBright[i] + 2* 0xFF;
 					}
 				}
 				else
 					moy = dataBright[i];
 			}
 
-			lastBrightSaved = (uint16_t)(moy / maxData);
+			moy = moy / maxData;
+
+			if(moy < 0)
+				lastBrightSaved = (uint16_t)(moy + 2*0xFF);
+			else if(moy >= 2* 0xFF)
+				lastBrightSaved = (uint16_t)(moy - 2*0xFF);
 
 			saveIndex++;
 			if(saveIndex >= maxData)
