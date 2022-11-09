@@ -394,7 +394,7 @@ void minuterie(void* param)
 
 void demoColor2(void* param)
 {
-	const uint16_t brightHigh = 0x3F, brightLow = 0x10, inTime = 1700 / (brightHigh - brightLow), outTime = 4000 / (brightHigh - brightLow);
+	const uint16_t brightHigh = 0xFF, brightLow = 0x10, inTime = 1700 / (brightHigh - brightLow), outTime = 4000 / (brightHigh - brightLow);
 	uint16_t incColor = 0x00, incBright = brightHigh, time = outTime;
 	static bool upBright = false, updateColor = true;
 	static uint16_t delayColor = 0, delayBright = 0;
@@ -559,20 +559,48 @@ void interaction(void* param)
 				dataColor[saveIndex] = (uint16_t)(1530 + ((int32_t)191 * (int32_t) y) / x);
 			}
 
+//			moy = 0;
+//			for(uint8_t i =0; i<maxData; i++)
+//			{
+//				if(i > 0)
+//				{
+//					int32_t straight = (int32_t) dataColor[i] - dataColor[0];
+//					if(straight < 0 )
+//						straight = -(straight);
+//
+//					int32_t around = 2*0xFF - (straight);
+//					if(around < 0)
+//						around = -(around);
+//
+//					if(straight <= around)
+//						moy += dataColor[i];
+//					else
+//					{
+//						if (dataColor[i] > dataColor[0])
+//							moy += (int32_t) dataColor[i] - 2 * 0xFF;
+//						else
+//							moy += (int32_t) dataColor[i] + 2* 0xFF;
+//					}
+//				}
+//				else
+//					moy = dataColor[i];
+//			}
+//
+//			moy = moy / maxData;
+//
+//			if(moy < 0)
+//				lastColorSaved = (uint16_t)(moy + 2*0xFF);
+//			else if(moy >= 2* 0xFF)
+//				lastColorSaved = (uint16_t)(moy - 2*0xFF);
+			lastColorSaved = dataColor[saveIndex];
 
-			moy = 0;
-			for(uint8_t i =0; i<maxData; i++)
-			{
-				moy += dataColor[i];
-			}
-
-			lastColorSaved = (uint16_t)(moy / maxData);
 
 			//Compute Brightness and save it
 			int16_t z = -axcelData.z;
 			int32_t tempVal;
 
-			tempVal = ((int32_t)z * 0x3F) / gVal + 0x3F;
+			tempVal = ((int32_t)z * 0xFF) / gVal + 0xFF;
+
 
 			if(tempVal > (2 * 0xFF+1))
 				tempVal = 2 * 0xFF;
@@ -581,39 +609,15 @@ void interaction(void* param)
 
 			dataBright[saveIndex] = (uint16_t) tempVal;
 
-			moy = 0;
-			for(uint8_t i =0; i<maxData; i++)
-			{
-				if(i > 0)
-				{
-					int32_t straight = (int32_t) dataBright[i] - dataBright[0];
-					if(straight < 0 )
-						straight = -(straight);
+//			moy = 0;
+//			for(uint8_t i =0; i<maxData; i++)
+//			{
+//				moy += dataBright[i];
+//			}
+//
+//			lastBrightSaved = (uint16_t)(moy / maxData);
 
-					int32_t around = 2*0xFF - (straight);
-					if(around < 0)
-						around = -(around);
-
-					if(straight <= around)
-						moy += dataBright[i];
-					else
-					{
-						if (dataBright[i] > dataBright[0])
-							moy += (int32_t) dataBright[i] - 2 * 0xFF;
-						else
-							moy += (int32_t) dataBright[i] + 2* 0xFF;
-					}
-				}
-				else
-					moy = dataBright[i];
-			}
-
-			moy = moy / maxData;
-
-			if(moy < 0)
-				lastBrightSaved = (uint16_t)(moy + 2*0xFF);
-			else if(moy >= 2* 0xFF)
-				lastBrightSaved = (uint16_t)(moy - 2*0xFF);
+			lastBrightSaved = dataBright[saveIndex];
 
 			saveIndex++;
 			if(saveIndex >= maxData)
